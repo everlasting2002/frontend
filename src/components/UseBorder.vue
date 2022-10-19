@@ -44,10 +44,10 @@
         top: $border-width;
       }
       &::before {
-        left: -$border-width / 2;
+        left: calc(-#{$border-width} / 2);
       }
       &::after {
-        right: -$border-width / 2;
+        right: calc(-#{$border-width} / 2);
       }
     }
   }
