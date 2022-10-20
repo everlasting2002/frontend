@@ -21,9 +21,9 @@ import Btn from "../components/Btn.vue";
 </template>
 
 <style lang="scss" scoped>
-  @font-face {//TODO:改成我们原神的皮肤！
-    font-family: gete;
-    src: url("../../public/assets/gete.ttf");
+  @font-face {
+    font-family: genshin;
+    src: url("../../public/assets/zh-cn.ttf");
   }
 
   .main-page {
@@ -39,7 +39,6 @@ import Btn from "../components/Btn.vue";
       text-align: center;
       font-size: 3rem;
       font-weight: bolder;
-      font-family: gete;
     }
 
     .btn {
