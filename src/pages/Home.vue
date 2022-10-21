@@ -7,7 +7,7 @@ import Btn from "../components/Btn.vue";
 <template>
   <div class="main-page">
     <img
-      :src="`/assets/nilou.jpg`"
+      :src="`/assets/paimon.gif`"
       alt="logo"
       class="logo"
     />
