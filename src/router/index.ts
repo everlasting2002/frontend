@@ -13,6 +13,10 @@ const router = createRouter({
       name: "Home",
       alias: "/",
       component: () => import("../pages/Home.vue")
+    },{
+      path: "/createRoom",
+      name: "createRoom",
+      component: () => import("../pages/CreateRoom.vue")
     }
   ]
 });
