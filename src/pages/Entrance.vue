@@ -13,18 +13,12 @@ import Btn from "../components/Btn.vue";
     />
 
     <div class="title">虚空劫灰往世书</div>
-    <Btn @click="$router.push('joinRoom')" content="加入房间"></Btn>
-    <Btn @click="$router.push('createRoom')" content="创建房间"></Btn>
-    <Btn @click="$router.push('review')" content="游戏记录"></Btn>
+    <Btn @click="$router.push('home')" content="点击开始"></Btn>
   </div>
   
 </template>
 
 <style lang="scss" scoped>
-  @font-face {
-    font-family: genshin;
-    src: url("../../public/assets/zh-cn.ttf");
-  }
 
   .main-page {
     .logo {
