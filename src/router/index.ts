@@ -5,8 +5,11 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: "home",
       alias: "/",
+      component: () => import("../pages/Entrance.vue")
+    },{
+      path: "/home",
+      name: "home",
       component: () => import("../pages/Home.vue")
     },{
       path: "/createRoom",
