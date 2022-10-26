@@ -23,6 +23,10 @@ const router = createRouter({
       path: "/review",
       name: "review",
       component: () => import("../pages/Review.vue")
+    },{
+      path: "/waitRoom",
+      name: "waitRoom",
+      component: () => import("../pages/WaitRoom.vue")
     }
   ]
 });
