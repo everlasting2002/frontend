@@ -17,7 +17,6 @@ export interface RoomDef{
 	remainingIndexes: index[];//空缺玩家号码
 	isFinished: boolean;//是否已经结束 -> 游戏结束重置
 	gameStatus: GameStatus[];//所有的游戏状态的栈，游戏结束重置
-	timer: NodeJS.Timeout;//时间定时器 id, undefined 则为结束
 }
 
 export interface PublicPlayerDef {
