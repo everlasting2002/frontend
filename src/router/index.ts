@@ -5,14 +5,24 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: "Home",
       alias: "/",
-      component: () => import("../pages/Home.vue")
+      component: () => import("../pages/Entrance.vue")
     },{
       path: "/home",
-      name: "Home",
-      alias: "/",
+      name: "home",
       component: () => import("../pages/Home.vue")
+    },{
+      path: "/createRoom",
+      name: "createRoom",
+      component: () => import("../pages/CreateRoom.vue")
+    },{
+      path: "/joinRoom",
+      name: "joinRoom",
+      component: () => import("../pages/JoinRoom.vue")
+    },{
+      path: "/review",
+      name: "review",
+      component: () => import("../pages/Review.vue")
     }
   ]
 });
