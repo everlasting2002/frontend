@@ -4,7 +4,7 @@ import { reactive, ref } from "vue";
 import { SetableCharacters } from "../../shared/GameDefs";
 import router from "../router";
 import { showDialog } from "./dialog";
-import { needingCharacters, players } from "./game";
+import { needingCharacters,self, players, Room } from "./game";
 
 /**
  * 游戏人数配置(reactive)
@@ -26,14 +26,22 @@ export const password = ref<string>("");
 
 export async function create() {
   if (!nickname.value) return showDialog("请填写昵称");
-
-  /* 设置人数配置 */
-  let characterNames: SetableCharacters[] = [];
-  Object.keys(characters).map((_name) => {
-    const name = _name as SetableCharacters;
-    characterNames = characterNames.concat(
-      new Array(characters[name]).fill(name)
-    );
-  });
-  needingCharacters.value = characterNames;
+  //const res = 1;
+  //if(创建房间成功){
+    Room.value.roomNumber = "114514";//之后得改成从后端获取房间号
+    showDialog("创建成功, 进入等待房间");
+    self.value.index=1;
+    router.push({
+      name: "waitRoom",
+    });
+    players.value = [
+      {
+        index: 1,
+        name: nickname.value,
+        isFairy: false,
+        teamVoted: [],
+        questVoted: [],
+      },
+    ];
+  //}
 }
