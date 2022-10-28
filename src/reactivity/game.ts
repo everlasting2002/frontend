@@ -1,4 +1,3 @@
-import { FALSE } from "sass";
 import { computed, ref, Ref, watchEffect } from "vue";
 
 import { Character, GameStatus, TIMEOUT } from "../../shared/GameDefs";
@@ -33,13 +32,12 @@ export const self = ref<PlayerDef>({
   index: 0,
   isFairy: false,
   name: "---",
+  avatar: "PlayerGirl",
 });
 /** 自己的角色 */
 export const character = computed(() =>
   self.value ? self.value.character : ""
 );
-/** 天数 */
-export const date = ref<round>(-1);
 /** 当前游戏进程 */
 export const gameStatus = ref<GameStatus>(GameStatus.DAY_DISCUSS);
 /** 当前状态还有多结束 */
@@ -53,13 +51,7 @@ export const gameStatusTimeLeft = ref(
 /**
  * 获得最新的游戏信息
  */
-/* export async function refresh() {
-  const data = await getGameStatus({});
-  if (!data) return;
-
-  date.value = data.curDay;
-  gameStatus.value = data.gameStatus;
-  players.value = data.players;
-  self.value = data.self;
+export async function refresh() {
+  self.value.character="MERLIN";
+  Room.value.currentRound=1;
 }
- */

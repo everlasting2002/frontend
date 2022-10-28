@@ -29,7 +29,6 @@ export async function create() {
   //const res = 1;
   //if(创建房间成功){
     Room.value.roomNumber = "114514";//之后得改成从后端获取房间号
-    showDialog("创建成功, 进入等待房间");
     self.value.index=1;
     router.push({
       name: "waitRoom",
@@ -41,6 +40,7 @@ export async function create() {
         isFairy: false,
         teamVoted: [],
         questVoted: [],
+        avatar: "PlayerGirl",
       },
     ];
   //}
