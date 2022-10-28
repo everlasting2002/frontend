@@ -5,6 +5,7 @@
       :key="item.index"
       class="player"
     >
+      <Avatar :character="item.avatar"></Avatar>
       <div class="index">
         <span class="index-content">{{ item.index }}</span>
       </div>
@@ -13,21 +14,16 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
   import { defineComponent, computed, PropType } from "vue";
   import { PublicPlayerDef } from "../../shared/ModelDefs";
-  const RoomPlayerList = defineComponent({
-    name: "RoomPlayerList",
-    props: {
-      playerList: {
-        type: Object as PropType<PublicPlayerDef[]>,
-        required: true,
-      },
+  import Avatar from "./Avatar.vue";
+  const props = defineProps({
+    playerList: {
+      type: Object as PropType<PublicPlayerDef[]>,
+      required: true,
     },
-    components: {},
-  });
-
-  export default RoomPlayerList;
+  })
 </script>
 
 <style lang="scss">

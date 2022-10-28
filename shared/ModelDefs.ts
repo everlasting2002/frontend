@@ -4,6 +4,11 @@ export type index = number;//玩家编号，从1开始
 
 export type round = number;
 export type TeamVoteNumber = number;
+export type Avatar =
+  | "PlayerGirl"
+  | "Ayaka"
+  | "Albedo"
+  | "";
 
 export interface RoomDef{
 	roomNumber: string;//房间号码
@@ -25,6 +30,7 @@ export interface PublicPlayerDef {
   isFairy: boolean; // 是否为湖中仙女 -> 游戏结束重置
   teamVoted: boolean[]; // 下标是轮数, value 是投了好票还是坏票
   questVoted: boolean[]; // 下标是轮数, value 是投了好票还是坏票
+  avatar: Avatar;// 头像
 }
 
 export interface PlayerDef extends PublicPlayerDef {
