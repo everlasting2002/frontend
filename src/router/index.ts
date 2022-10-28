@@ -27,6 +27,10 @@ const router = createRouter({
       path: "/waitRoom",
       name: "waitRoom",
       component: () => import("../pages/WaitRoom.vue")
+    },{
+      path: "/play",
+      name: "play",
+      component: () => import("../pages/Play.vue")
     }
   ]
 });

@@ -4,7 +4,7 @@
     <div class="room-number">房间号：{{ number }}</div>
     <div id="qr-code"></div>
     <Btn
-      @click=""
+      @click="gameBegin()"
       v-if="self.index === 1"
       content="开始游戏"
       class="wait-btn"
@@ -15,6 +15,7 @@
       v-if="self.index === 1"
       content="添加AI"
       class="wait-btn"
+      :disabled="!canAdd"
     ></Btn>
     <Btn
       class="wait-btn"
@@ -30,10 +31,12 @@
   import { showDialog } from "../reactivity/dialog";
   import Btn from "../components/Btn.vue";
   import { computed } from "@vue/reactivity";
+  import router from "../router";
 
   const number = Room.value.roomNumber;
   const playerList = players;
   const canBegin = computed(()=>players.value.length >= 5);
+  const canAdd = computed(()=>players.value.length < 12);
   
   function addPlayer(){
     players.value.push({
@@ -42,7 +45,16 @@
       isFairy: false,
       teamVoted: [],
       questVoted: [],
+      avatar: "Albedo",
     })
+  }
+  
+  function gameBegin(){
+    setTimeout(() => {
+      router.push({
+        name: "play",
+      });
+    }, 500);
   }
 </script>
 
