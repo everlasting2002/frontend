@@ -17,7 +17,7 @@ export async function WSConnect(){
 
 function joinRoom(res : JoinRoomResponse){
 	if(res.result=="fail"){
-		return showDialog("加入房间失败");
+		return showDialog(res.reason);
 	}
 	self.value.index = res.ID;
 	router.push({
@@ -28,7 +28,7 @@ function joinRoom(res : JoinRoomResponse){
 
 function createRoom(res : CreateRoomResponse){
 	if(res.result=="fail"){
-		return showDialog("创建房间失败");
+		return showDialog(res.reason);
 	}
 	Room.value.roomNumber = res.roomNumber;
 	self.value.index = res.ID;
