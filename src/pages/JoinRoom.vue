@@ -4,7 +4,7 @@
     <div class="number">
       <span class="hint">房号：</span>
       <UseBorder>
-        <input maxlength="6" type="text" v-model="roomNumber" />
+        <input maxlength="6" type="text" v-model="Room.roomNumber" />
       </UseBorder>
     </div>
     <div class="pw">
@@ -14,7 +14,7 @@
           maxlength="20"
           type="text"
           placeholder="(可选)"
-          v-model="password"
+          v-model="Room.password"
         />
       </UseBorder>
     </div>
@@ -25,7 +25,7 @@
           :maxlength="8"
           type="text"
           placeholder=""
-          v-model="nickname"
+          v-model="self.name"
         />
       </UseBorder>
     </div>
@@ -34,37 +34,17 @@
   </div>
 </template>
 
-<script lang="ts">
-  import { defineComponent, toRefs } from "vue";
+<script setup lang="ts">
+  import { toRefs } from "vue";
 
   import UseBorder from "../components/UseBorder.vue";
   import Btn from "../components/Btn.vue";
+  import {Room,self} from "../reactivity/game"
 
   import {
-    password,
-    roomNumber,
-    nickname,
     join,
   } from "../reactivity/joinRoom";
 
-  const JoinRoom = defineComponent({
-    name: "JoinRoom",
-    components: { UseBorder, Btn },
-    props: {
-      pw: String,
-      number: String,
-    },
-    setup(props) {
-      const { pw, number } = toRefs(props);
-      if (pw && pw.value) password.value = pw.value;
-      if (number && number.value)
-        roomNumber.value = number.value.slice(0, 6);
-
-      return { password, roomNumber, nickname, join };
-    },
-  });
-
-  export default JoinRoom;
 </script>
 
 <style lang="scss" scoped>

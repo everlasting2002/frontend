@@ -3,48 +3,30 @@
     <div class="name">
       <span class="hint">你的昵称：</span>
       <use-border>
-        <input :maxlength="10" type="text" placeholder="请输入昵称" v-model="nickname" />
+        <input :maxlength="10" type="text" placeholder="请输入昵称" v-model="self.name" />
       </use-border>
     </div>
     <div class="password">
       <span class="hint">房间密码：</span>
       <use-border>
-        <input type="text" :maxlength="20" placeholder="(可选)" v-model="password" />
+        <input type="text" :maxlength="20" placeholder="(可选)" v-model="Room.password" />
       </use-border>
     </div>
     <outlined-btn @click="create()" content="确认创建"></outlined-btn>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+  import { defineComponent } from "vue";
 
-import OutlinedBtn from "../components/Btn.vue";
-import UseBorder from "../components/UseBorder.vue";
+  import OutlinedBtn from "../components/Btn.vue";
+  import UseBorder from "../components/UseBorder.vue";
+  import {self,Room} from "../reactivity/game";
 
-import {
-  characters,
-  nickname,
-  password,
-  create,
-} from "../reactivity/createRoom";
-import { showDialog } from "../reactivity/dialog";
+  import {
+    create,
+  } from "../reactivity/createRoom";
 
-const CreateRoom = defineComponent({
-  name: "CreateRoom",
-  components: { OutlinedBtn, UseBorder },
-  setup(props) {
-    return {
-      characters,
-      nickname,
-      password,
-      create,
-      showDialog,
-    };
-  },
-});
-
-export default CreateRoom;
 </script>
 
 <style lang="scss" scoped>

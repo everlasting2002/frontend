@@ -24,6 +24,7 @@
       required: true,
     },
   })
+  console.log(props.playerList);
 </script>
 
 <style lang="scss">

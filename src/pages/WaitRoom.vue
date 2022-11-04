@@ -5,17 +5,10 @@
     <div id="qr-code"></div>
     <Btn
       @click="gameBegin()"
-      v-if="self.index === 1"
+      v-if="self.index === Room.ownerID"
       content="开始游戏"
       class="wait-btn"
       :disabled="!canBegin"
-    ></Btn>
-    <Btn
-      @click="addPlayer()"
-      v-if="self.index === 1"
-      content="添加AI"
-      class="wait-btn"
-      :disabled="!canAdd"
     ></Btn>
     <Btn
       class="wait-btn"
@@ -32,22 +25,11 @@
   import Btn from "../components/Btn.vue";
   import { computed } from "@vue/reactivity";
   import router from "../router";
-
+  import { Ref } from "vue";
+  
   const number = Room.value.roomNumber;
   const playerList = players;
   const canBegin = computed(()=>players.value.length >= 5);
-  const canAdd = computed(()=>players.value.length < 12);
-  
-  function addPlayer(){
-    players.value.push({
-      index: players.value.length+1,
-      name: "Bob",
-      isFairy: false,
-      teamVoted: [],
-      questVoted: [],
-      avatar: "Albedo",
-    })
-  }
   
   function gameBegin(){
     setTimeout(() => {

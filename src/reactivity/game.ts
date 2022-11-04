@@ -8,9 +8,8 @@ import {
 
 export const Room = ref<RoomDef>({
   roomNumber: "",//房间号码
-	creatorID: "",//创建者ID
-	players: [],// 参与者
-	password: undefined, //是否设置密码，存放哈希过的密码
+	ownerID: -1,//创建者ID
+	password: undefined, //是否设置密码，存放明文密码
 	currentRound: 0,//当前轮数 -> 游戏结束重置
 	currentTeamVote: 0,//当前组队投票轮数 -> 游戏结束重置
 	prevTeamVote: 0,//上一次组队投票成功的轮数 -> 游戏结束重置
@@ -31,7 +30,7 @@ export const self = ref<PlayerDef>({
   questVoted: [],
   index: 0,
   isFairy: false,
-  name: "---",
+  name: "",
   avatar: "PlayerGirl",
 });
 /** 自己的角色 */
