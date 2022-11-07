@@ -15,7 +15,6 @@ import Btn from "../components/Btn.vue";
     <div class="title">虚空劫灰往世书</div>
     <Btn @click="$router.push('joinRoom')" content="加入房间"></Btn>
     <Btn @click="$router.push('createRoom')" content="创建房间"></Btn>
-    <Btn @click="$router.push('review')" content="游戏记录"></Btn>
   </div>
   
 </template>

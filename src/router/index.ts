@@ -20,10 +20,6 @@ const router = createRouter({
       name: "joinRoom",
       component: () => import("../pages/JoinRoom.vue")
     },{
-      path: "/review",
-      name: "review",
-      component: () => import("../pages/Review.vue")
-    },{
       path: "/waitRoom",
       name: "waitRoom",
       component: () => import("../pages/WaitRoom.vue")
