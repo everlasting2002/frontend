@@ -1,4 +1,4 @@
-import sha256 from "sha256";
+// import sha256 from "sha256";
 import { reactive, ref } from "vue";
 
 import { SetableCharacters } from "../../shared/GameDefs";
@@ -22,6 +22,7 @@ export const characters = reactive<Record<SetableCharacters, number> >({
 
 /* 玩家信息 */
 export const nickname = ref<string>("");
+export const playnum = ref<string>("");
 export const password = ref<string>("");
 
 export async function create() {

@@ -1,44 +1,74 @@
 <template>
   <div id="main-page" ref="flexible_fullscreen" class="main-page">
-    <img :src="`/assets/img/loading_bg_puzzle.png`" alt="loading_bg_puzzle" class="loading_bg_puzzle" />
+    <canvas id="canvas_bg" ref="canvas_bg" class="canvas_bg"></canvas>
+    <!-- <img :src="`/assets/img/loading_bg_puzzle.png`" alt="loading_bg_puzzle" class="loading_bg_puzzle" />
     <img :src="`/assets/img/loading_bg_di2.png`" alt="loading_bg_di2" class="loading_bg_di2" />
     <img :src="`/assets/img/loading_pgy2.png`" alt="loading_pgy2" class="loading_pgy2" />
     <img :src="`/assets/img/loading_pgy3.png`" alt="loading_pgy3" class="loading_pgy3" />
     <img :src="`/assets/img/loading_pgy3.png`" alt="loading_pgy3_1" class="loading_pgy3_1" />
     <img :src="`/assets/img/loading_pgy4.png`" alt="loading_pgy4" class="loading_pgy4" />
-    <div id="pgy" ref="pgy" class="pgy">
-    </div>
     <img :src="`/assets/img/pm.png`" alt="logo" class="logo" />
     <div class="title">虚空劫灰往世书</div>
-    <img :src="`/assets/img/loading_enter.png`" @click="$router.push('home')" @mouseover="enter_mouseOver"
-      @mouseleave="enter_mouseLeave" alt="loading_enter" class="loading_enter" />
+    <img :src="`/assets/img/loading_enter.png`" @click="$router.push('home')" alt="loading_enter"
+      class="loading_enter" /> -->
   </div>
-
 
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue';
-import { gsap } from 'gsap';
+const canvas_bg = ref<HTMLCanvasElement>();
 const flexible_fullscreen = ref<HTMLElement>();
-var enter_tl = gsap.timeline();
-const enter_mouseOver = () => {
-  enter_tl.play();
-  console.log("mouseover");
+let ctx: CanvasRenderingContext2D;
+var loading_bg_puzzle = new Image();
+var loading_bg_di2 = new Image();
+var loading_pgy2 = new Image();
+var onload_cnt = ref(0);
+var onload_done = false;
+window.requestAnimationFrame = (function () {//解决定时器卡问题，使用帧动画
+  return window.requestAnimationFrame ||
+    function (callback) {
+      window.setInterval(callback, 1000 / 60);
+    };
+})();
+const draw = () => {
+  var now = new Date();
+  var sec = now.getSeconds();
+  console.log("time = " + now);
+  var __width = canvas_bg.value!.width;
+  var __height = canvas_bg.value!.height;
+  ctx.clearRect(0, 0, __width, __height);
+  // ctx.drawImage(loading_bg_puzzle, 0, 0, __width, __height);
+  // ctx.drawImage(loading_bg_di2, 0, 0, __width, __height);
+  ctx.drawImage(loading_pgy2, 0.18 * __width, 0.80 * __height, 0.06 * __width, 0.20 * __height);
+  window.requestAnimationFrame(draw);
 }
-const enter_mouseLeave = () => {
-  enter_tl.reverse();
-  console.log("mouseleave")
+const initCanvas = () => {
+  if (onload_done == false) return;
+  ctx = canvas_bg.value?.getContext("2d") as CanvasRenderingContext2D;
+  canvas_bg.value!.width = flexible_fullscreen.value!.getBoundingClientRect().width;
+  canvas_bg.value!.height = flexible_fullscreen.value!.getBoundingClientRect().height;
+  draw();
+}
+const preload = () => {
+  loading_bg_puzzle.src = 'assets/img/loading_bg_puzzle.png';
+  loading_bg_puzzle.onload = function () { onload_cnt.value++; };
+  loading_bg_di2.src = 'assets/img/loading_bg_di2.png';
+  loading_bg_di2.onload = function () { onload_cnt.value++; }
+  loading_pgy2.src = 'assets/img/loading_pgy2.png';
+  loading_pgy2.onload = function () { onload_cnt.value++; }
 }
 onMounted(() => {
-  var __width = flexible_fullscreen.value!.getBoundingClientRect().width;
-  var __height = flexible_fullscreen.value!.getBoundingClientRect().height;
-  enter_tl.to(".loading_enter", {
-    // x: 200,
-    y: -__height * 0.015,
-    opacity: 1,
-    duration: 1,
-  }).pause();
+  preload();
+  window.onresize = () => {
+    initCanvas();
+  };
+})
+watch(onload_cnt, (new_onload_cnt) => {
+  if (new_onload_cnt == 3) {
+    onload_done = true;
+    initCanvas();
+  }
 })
 </script>
 
@@ -50,6 +80,16 @@ onMounted(() => {
   top: calc((100vh - var(--height)) / 2);
   margin: auto;
   overflow: hidden;
+
+  .canvas_bg {
+    z-index: 1;
+    position: absolute;
+  }
+
+  .canvas_bg {
+    z-index: 1;
+    position: absolute;
+  }
 
   .loading_bg_puzzle {
     z-index: 1;
@@ -128,7 +168,6 @@ onMounted(() => {
     position: absolute;
     left: 0;
     right: 0;
-    opacity: 0.7;
     top: calc((2/3*var(--height)));
     width: calc((2/3*var(--height)));
     margin: auto;

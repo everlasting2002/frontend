@@ -16,11 +16,11 @@ import Dialog from "./components/Dialog.vue";
 <style lang="scss" scoped>
   .wrapper {
     .main {
-      //max-width: 30rem;
       margin: auto;
-      min-height: 100vh;
-      padding-bottom: 30px;
+      overflow: hidden;
+      transform-origin: center center;
       box-sizing: border-box;
+      position: relative;
     }
   }
 </style>
