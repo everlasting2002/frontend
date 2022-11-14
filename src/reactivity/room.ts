@@ -70,5 +70,5 @@ function getRoomStatus(data:any){
 	if(!self.value.avatar){
 		changeAvatar("PlayerGirl");
 	}
-	console.log(players.value);
+	//console.log(players.value);
 }

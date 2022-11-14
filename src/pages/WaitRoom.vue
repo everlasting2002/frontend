@@ -30,11 +30,13 @@
     class="text_rule"
     >游戏规则</div>
     <img
+      v-if="self.index === Room.ownerID"
       :src="`/assets/img/waitroom_btn_start.png`"
       alt="waitroom_btn_start"
       class="waitroom_btn_start"
     />
     <div 
+    v-if="self.index === Room.ownerID"
     class="text_start"
     >开始游戏</div>
     <img
@@ -49,15 +51,10 @@
     />
     <img
       :src="`/assets/img/waitroom_btn_return.png`"
-      @click="$router.push('CreateRoom')"
+      @click="$router.push('Home')"
       alt="waitroom_btn_return"
       class="waitroom_btn_return"
     />
-    <!-- <Btn
-      class="wait-btn"
-      @click="showDialog('暂未实现')"
-      content="查看规则"
-    ></Btn> -->
   </div>
 </template>
 

@@ -3,7 +3,7 @@
     <img :src="`/assets/img/createroom_bg.png`" alt="createroom_bg" class="createroom_bg" />
     <img :src="`/assets/img/createroom_x.png`" @click="$router.push('Home')" alt="createroom_x" class="createroom_x" />
     <div class="text_roomjoin">加入房间</div>
-    <img :src="`/assets/img/loading_enter.png`" @click="$router.push('WaitRoom')" alt="loading_enter"
+    <img :src="`/assets/img/loading_enter.png`" @click="join()" alt="loading_enter"
       class="loading_enter" />
 
     <input class="name" :maxlength="10" type="text" placeholder="您的昵称" v-model="self.name" />
