@@ -1,10 +1,9 @@
 <template>
   <div class="joinroom">
     <img :src="`/assets/img/createroom_bg.png`" alt="createroom_bg" class="createroom_bg" />
-    <img :src="`/assets/img/createroom_x.png`" @click="$router.push('Home')" alt="createroom_x" class="createroom_x" />
+    <Btn class="createroom_x" @click="$router.push('Home')" type="x" img="/assets/img/createroom_x.png" />
     <div class="text_roomjoin">加入房间</div>
-    <img :src="`/assets/img/loading_enter.png`" @click="join()" alt="loading_enter"
-      class="loading_enter" />
+    <Btn class="loading_enter" @click="join()" type="Entrance" img="/assets/img/loading_enter.png" />
 
     <input class="name" :maxlength="10" type="text" placeholder="您的昵称" v-model="self.name" />
     <input class="roomnumber" :maxlength="10" type="text" placeholder="房间号" v-model="Room.roomNumber" />

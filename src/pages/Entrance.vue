@@ -9,16 +9,15 @@
     <div id="pgy" ref="pgy" class="pgy">
     </div>
     <img :src="`/assets/img/pm.png`" alt="logo" class="logo" />
-    <div id="loading_enter" @click="$router.push('home')">
-      <div class="title">虚空劫灰往世书</div>
-      <img :src="`/assets/img/loading_enter.png`" alt="loading_enter" class="loading_enter" />
-    </div>
+    <div class="title">虚空劫灰往世书</div>
+    <Btn class="loading_enter" @click="$router.push('Home')" type="Entrance" img="/assets/img/loading_enter.png" />
   </div>
 
 
 </template>
 
 <script setup lang="ts">
+import Btn from "../components/Btn.vue";
 
 </script>
 
