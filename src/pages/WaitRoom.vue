@@ -8,24 +8,8 @@
       alt="waitroom_bg"
       class="waitroom_bg"
     />
-    <img
-      :src="`/assets/img/waitroom_btn_rule.png`"
-      alt="waitroom_btn_rule"
-      class="waitroom_btn_rule"
-    />
-    <div 
-    class="text_rule"
-    >游戏规则</div>
-    <img
-      v-if="self.index === Room.ownerID"
-      :src="`/assets/img/waitroom_btn_start.png`"
-      alt="waitroom_btn_start"
-      class="waitroom_btn_start"
-    />
-    <div 
-    v-if="self.index === Room.ownerID"
-    class="text_start"
-    >开始游戏</div>
+    <Btn class="text_rule" type="Rule" content="游戏规则" />
+    <Btn class="text_start" type="Start" content="开始游戏" v-if="self.index === Room.ownerID" />
     <img
       :src="`/assets/img/waitroom_players.png`"
       alt="waitroom_players"
@@ -36,12 +20,7 @@
       alt="waitroom_line"
       class="waitroom_line"
     />
-    <img
-      :src="`/assets/img/waitroom_btn_return.png`"
-      @click="$router.push('Home')"
-      alt="waitroom_btn_return"
-      class="waitroom_btn_return"
-    />
+    <Btn class="waitroom_btn_return" @click="$router.push('Home')" type="x" img="/assets/img/waitroom_btn_return.png" />
   </div>
 </template>
 

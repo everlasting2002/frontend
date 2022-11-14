@@ -1,10 +1,9 @@
 <template>
   <div class="createroom">
     <img :src="`/assets/img/createroom_bg.png`" alt="createroom_bg" class="createroom_bg" />
-    <img :src="`/assets/img/createroom_x.png`" @click="$router.push('Home')" alt="createroom_x" class="createroom_x" />
+    <Btn class="createroom_x" @click="$router.push('Home')" type="x" img="/assets/img/createroom_x.png" />
     <div class="text_roomcreate">创建房间</div>
-    <img :src="`/assets/img/loading_enter.png`" @click="create()" alt="loading_enter"
-      class="loading_enter" />
+    <Btn class="loading_enter" @click="create()" type="Entrance" img="/assets/img/loading_enter.png" />
 
     <input class="name" :maxlength="10" type="text" placeholder="您的昵称" v-model="self.name" />
     <input class="password" type="text" :maxlength="20" placeholder="房间密码(可选)" v-model="Room.password" />
@@ -15,6 +14,7 @@
 <script setup lang="ts">
   import { defineComponent } from "vue";
 
+  import Btn from "../components/Btn.vue";
   import OutlinedBtn from "../components/Btn.vue";
   import UseBorder from "../components/UseBorder.vue";
   import {self,Room} from "../reactivity/game";
