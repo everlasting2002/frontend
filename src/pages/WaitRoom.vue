@@ -3,19 +3,6 @@
     <!-- <RoomPlayerList :playerList="playerList"></RoomPlayerList> -->
     <div class="room-number">房间号：{{ number }}</div>
     <div id="qr-code"></div>
-    <!-- <Btn
-      @click=""
-      v-if="self.index === 1"
-      content="开始游戏"
-      class="wait-btn"
-      :disabled="!canBegin"
-    ></Btn>
-    <Btn
-      @click="addPlayer()"
-      v-if="self.index === 1"
-      content="添加AI"
-      class="wait-btn"
-    ></Btn> -->
     <img
       :src="`/assets/img/waitroom_bg.png`"
       alt="waitroom_bg"
