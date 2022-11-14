@@ -5,22 +5,18 @@ import Dialog from "./components/Dialog.vue";
 </script>
 
 <template>
-  <div class="wrapper">
-    <div class="main">
-      <router-view/>
-      <Dialog></Dialog>
-    </div>
+  <div class="main">
+    <router-view />
+    <Dialog></Dialog>
   </div>
 </template>
 
 <style lang="scss" scoped>
-  .wrapper {
-    .main {
-      margin: auto;
-      overflow: hidden;
-      transform-origin: center center;
-      box-sizing: border-box;
-      position: relative;
-    }
-  }
+.main {
+  margin: auto;
+  overflow: hidden;
+  transform-origin: center center;
+  box-sizing: border-box;
+  position: relative;
+}
 </style>

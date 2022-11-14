@@ -7,7 +7,6 @@
       class="loading_enter" />
 
     <input class="name" :maxlength="10" type="text" placeholder="您的昵称" v-model="nickname" />
-    <input class="playnum" type="text" :maxlength="20" placeholder="游戏人数" v-model="playnum" />
     <input class="password" type="text" :maxlength="20" placeholder="房间密码(可选)" v-model="password" />
 
   </div>
@@ -22,7 +21,6 @@ import UseBorder from "../components/UseBorder.vue";
 import {
   characters,
   nickname,
-  playnum,
   password,
   create,
 } from "../reactivity/createRoom";
@@ -35,7 +33,6 @@ const CreateRoom = defineComponent({
     return {
       characters,
       nickname,
-      playnum,
       password,
       create,
       showDialog,
@@ -108,22 +105,11 @@ export default CreateRoom;
     z-index: 2;
   }
 
-  .playnum {
-    position: absolute;
-    opacity: 0.5;
-    left: calc(72/100*var(--height));
-    top: calc(427/1000*var(--height));
-    font-size: calc(40/1000*var(--height));
-    letter-spacing: calc(3/1000*var(--height));
-    color: #B3A894;
-    z-index: 2;
-  }
-
   .password {
     position: absolute;
     opacity: 0.5;
     left: calc(72/100*var(--height));
-    top: calc(556/1000*var(--height));
+    top: calc(427/1000*var(--height));
     font-size: calc(40/1000*var(--height));
     letter-spacing: calc(3/1000*var(--height));
     color: #B3A894;

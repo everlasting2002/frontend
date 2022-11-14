@@ -22,7 +22,6 @@ export const characters = reactive<Record<SetableCharacters, number> >({
 
 /* 玩家信息 */
 export const nickname = ref<string>("");
-export const playnum = ref<string>("");
 export const password = ref<string>("");
 
 export async function create() {
