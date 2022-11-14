@@ -4,9 +4,14 @@
 }
 
 .wrapper {
-	--bg: #f8f8f8;
+	/* --bg: #f8f8f8;
 	--on-bg: #111;
-	--secondary: #eee;
+	--secondary: #eee; */
+}
+
+:root{
+  --width: min(100vw,calc(100vh*2048/1080));
+  --height: min(100vh,calc(100vw*1080/2048));
 }
 
 * {

@@ -7,22 +7,18 @@ WSConnect();
 </script>
 
 <template>
-  <div class="wrapper">
-    <div class="main">
-      <router-view/>
-      <Dialog></Dialog>
-    </div>
+  <div class="main">
+    <router-view />
+    <Dialog></Dialog>
   </div>
 </template>
 
 <style lang="scss" scoped>
-  .wrapper {
-    .main {
-      //max-width: 30rem;
-      margin: auto;
-      min-height: 100vh;
-      padding-bottom: 30px;
-      box-sizing: border-box;
-    }
-  }
+.main {
+  margin: auto;
+  overflow: hidden;
+  transform-origin: center center;
+  box-sizing: border-box;
+  position: relative;
+}
 </style>
