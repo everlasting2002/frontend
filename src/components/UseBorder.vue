@@ -26,6 +26,7 @@
     border-radius: 5px;
     position: relative;
     display: inline-block;
+    background-color: white;
     .use-border-mask {
       position: absolute;
       right: 6%;

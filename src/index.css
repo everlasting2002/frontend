@@ -3,12 +3,6 @@
   src: url("../../public/assets/zh-cn.ttf");
 }
 
-.wrapper {
-	/* --bg: #f8f8f8;
-	--on-bg: #111;
-	--secondary: #eee; */
-}
-
 :root{
   --width: min(100vw,calc(100vh*2048/1080));
   --height: min(100vh,calc(100vw*1080/2048));
@@ -16,7 +10,7 @@
 
 * {
   color: var(--on-bg);
-  background-color: var(--bg);
+  /* background-color: var(--bg); */
   transition: color 0.2s, background-color 0.2s;
   user-select: none;
   font-family: genshin;
@@ -25,7 +19,7 @@
 
 .main {
   min-height: 100vh;
-  background-color: var(--bg);
+  /* background-color: var(--bg); */
 }
 
 input {

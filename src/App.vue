@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router";
 import Dialog from "./components/Dialog.vue";
+import { WSConnect } from "./reactivity/room";
 
+WSConnect();
 </script>
 
 <template>

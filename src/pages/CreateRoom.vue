@@ -3,44 +3,26 @@
     <img :src="`/assets/img/createroom_bg.png`" alt="createroom_bg" class="createroom_bg" />
     <img :src="`/assets/img/createroom_x.png`" @click="$router.push('Home')" alt="createroom_x" class="createroom_x" />
     <div class="text_roomcreate">创建房间</div>
-    <img :src="`/assets/img/loading_enter.png`" @click="$router.push('WaitRoom')" alt="loading_enter"
+    <img :src="`/assets/img/loading_enter.png`" @click="create()" alt="loading_enter"
       class="loading_enter" />
 
-    <input class="name" :maxlength="10" type="text" placeholder="您的昵称" v-model="nickname" />
-    <input class="password" type="text" :maxlength="20" placeholder="房间密码(可选)" v-model="password" />
+    <input class="name" :maxlength="10" type="text" placeholder="您的昵称" v-model="self.name" />
+    <input class="password" type="text" :maxlength="20" placeholder="房间密码(可选)" v-model="Room.password" />
 
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+  import { defineComponent } from "vue";
 
-import OutlinedBtn from "../components/Btn.vue";
-import UseBorder from "../components/UseBorder.vue";
+  import OutlinedBtn from "../components/Btn.vue";
+  import UseBorder from "../components/UseBorder.vue";
+  import {self,Room} from "../reactivity/game";
 
-import {
-  characters,
-  nickname,
-  password,
-  create,
-} from "../reactivity/createRoom";
-import { showDialog } from "../reactivity/dialog";
+  import {
+    create,
+  } from "../reactivity/createRoom";
 
-const CreateRoom = defineComponent({
-  name: "CreateRoom",
-  components: { OutlinedBtn, UseBorder },
-  setup(props) {
-    return {
-      characters,
-      nickname,
-      password,
-      create,
-      showDialog,
-    };
-  },
-});
-
-export default CreateRoom;
 </script>
 
 <style lang="scss" scoped>

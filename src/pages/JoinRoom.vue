@@ -3,46 +3,26 @@
     <img :src="`/assets/img/createroom_bg.png`" alt="createroom_bg" class="createroom_bg" />
     <img :src="`/assets/img/createroom_x.png`" @click="$router.push('Home')" alt="createroom_x" class="createroom_x" />
     <div class="text_roomjoin">加入房间</div>
-    <img :src="`/assets/img/loading_enter.png`" @click="$router.push('WaitRoom')" alt="loading_enter"
+    <img :src="`/assets/img/loading_enter.png`" @click="join()" alt="loading_enter"
       class="loading_enter" />
 
-    <input class="name" :maxlength="10" type="text" placeholder="您的昵称" v-model="nickname" />
-    <input class="roomnumber" :maxlength="10" type="text" placeholder="房间号" v-model="roomNumber" />
-    <input class="password" type="text" :maxlength="20" placeholder="房间密码(可选)" v-model="password" />
+    <input class="name" :maxlength="10" type="text" placeholder="您的昵称" v-model="self.name" />
+    <input class="roomnumber" :maxlength="10" type="text" placeholder="房间号" v-model="Room.roomNumber" />
+    <input class="password" type="text" :maxlength="20" placeholder="房间密码(可选)" v-model="Room.password" />
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, toRefs } from "vue";
+<script setup lang="ts">
+  import { toRefs } from "vue";
 
-import UseBorder from "../components/UseBorder.vue";
-import Btn from "../components/Btn.vue";
+  import UseBorder from "../components/UseBorder.vue";
+  import Btn from "../components/Btn.vue";
+  import {Room,self} from "../reactivity/game"
 
-import {
-  password,
-  roomNumber,
-  nickname,
-  join,
-} from "../reactivity/joinRoom";
+  import {
+    join,
+  } from "../reactivity/joinRoom";
 
-const JoinRoom = defineComponent({
-  name: "JoinRoom",
-  components: { UseBorder, Btn },
-  props: {
-    pw: String,
-    number: String,
-  },
-  setup(props) {
-    const { pw, number } = toRefs(props);
-    if (pw && pw.value) password.value = pw.value;
-    if (number && number.value)
-      roomNumber.value = number.value.slice(0, 6);
-
-    return { password, roomNumber, nickname, join };
-  },
-});
-
-export default JoinRoom;
 </script>
 
 <style lang="scss" scoped>

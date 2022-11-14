@@ -3,19 +3,6 @@
     <!-- <RoomPlayerList :playerList="playerList"></RoomPlayerList> -->
     <div class="room-number">房间号：{{ number }}</div>
     <div id="qr-code"></div>
-    <!-- <Btn
-      @click=""
-      v-if="self.index === 1"
-      content="开始游戏"
-      class="wait-btn"
-      :disabled="!canBegin"
-    ></Btn>
-    <Btn
-      @click="addPlayer()"
-      v-if="self.index === 1"
-      content="添加AI"
-      class="wait-btn"
-    ></Btn> -->
     <img
       :src="`/assets/img/waitroom_bg.png`"
       alt="waitroom_bg"
@@ -30,11 +17,13 @@
     class="text_rule"
     >游戏规则</div>
     <img
+      v-if="self.index === Room.ownerID"
       :src="`/assets/img/waitroom_btn_start.png`"
       alt="waitroom_btn_start"
       class="waitroom_btn_start"
     />
     <div 
+    v-if="self.index === Room.ownerID"
     class="text_start"
     >开始游戏</div>
     <img
@@ -49,15 +38,10 @@
     />
     <img
       :src="`/assets/img/waitroom_btn_return.png`"
-      @click="$router.push('CreateRoom')"
+      @click="$router.push('Home')"
       alt="waitroom_btn_return"
       class="waitroom_btn_return"
     />
-    <!-- <Btn
-      class="wait-btn"
-      @click="showDialog('暂未实现')"
-      content="查看规则"
-    ></Btn> -->
   </div>
 </template>
 
@@ -67,19 +51,19 @@
   import { showDialog } from "../reactivity/dialog";
   import Btn from "../components/Btn.vue";
   import { computed } from "@vue/reactivity";
-
+  import router from "../router";
+  import { Ref } from "vue";
+  
   const number = Room.value.roomNumber;
   const playerList = players;
   const canBegin = computed(()=>players.value.length >= 5);
   
-  function addPlayer(){
-    players.value.push({
-      index: players.value.length+1,
-      name: "Bob",
-      isFairy: false,
-      teamVoted: [],
-      questVoted: [],
-    })
+  function gameBegin(){
+    setTimeout(() => {
+      router.push({
+        name: "play",
+      });
+    }, 500);
   }
 </script>
 

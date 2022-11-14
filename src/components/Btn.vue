@@ -10,26 +10,17 @@
   </div>
 </template>
 
-<script lang="ts">
-  //  TODO  水波纹效果?
-  import { ComputedRef, defineComponent } from "vue";
-
+<script setup lang="ts">
   import UseBorder from "./UseBorder.vue";
-
-  const Btn = defineComponent({
-    name: "Btn",
-    components: { UseBorder },
-    props: {
-      content: String,
-      disabled: {
-        type: Boolean,
-        default: false,
-      },
-      onClick: { type: Function, default: () => {} },
+  
+  const props = defineProps({
+    content: String,
+    disabled: {
+      type: Boolean,
+      default: false,
     },
-  });
-
-  export default Btn;
+    onClick: { type: Function, default: () => {} },
+  })
 </script>
 
 <style lang="scss" scoped>
