@@ -35,7 +35,6 @@
 <style lang="scss" scoped>
   .btn {
     cursor: pointer;
-    
     display: inline-block;
     .content {
       padding: 0.5rem;

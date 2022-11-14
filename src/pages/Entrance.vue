@@ -9,37 +9,17 @@
     <div id="pgy" ref="pgy" class="pgy">
     </div>
     <img :src="`/assets/img/pm.png`" alt="logo" class="logo" />
-    <div class="title">虚空劫灰往世书</div>
-    <img :src="`/assets/img/loading_enter.png`" @click="$router.push('home')" @mouseover="enter_mouseOver"
-      @mouseleave="enter_mouseLeave" alt="loading_enter" class="loading_enter" />
+    <div id="loading_enter" @click="$router.push('home')">
+      <div class="title">虚空劫灰往世书</div>
+      <img :src="`/assets/img/loading_enter.png`" alt="loading_enter" class="loading_enter" />
+    </div>
   </div>
 
 
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue';
-import { gsap } from 'gsap';
-const flexible_fullscreen = ref<HTMLElement>();
-var enter_tl = gsap.timeline();
-const enter_mouseOver = () => {
-  enter_tl.play();
-  console.log("mouseover");
-}
-const enter_mouseLeave = () => {
-  enter_tl.reverse();
-  console.log("mouseleave")
-}
-onMounted(() => {
-  var __width = flexible_fullscreen.value!.getBoundingClientRect().width;
-  var __height = flexible_fullscreen.value!.getBoundingClientRect().height;
-  enter_tl.to(".loading_enter", {
-    // x: 200,
-    y: -__height * 0.015,
-    opacity: 1,
-    duration: 1,
-  }).pause();
-})
+
 </script>
 
 <style lang="scss" scoped>
