@@ -6,7 +6,7 @@
   >
     <span :class="type">
       <p class="content" v-if="content">{{ content }}</p>
-      <img class="img" :src="img" v-if="img" />
+      <img :src="img" v-if="img" />
     </span>
   </div>
 </template>
@@ -29,8 +29,8 @@
     cursor: pointer;
     display: inline-block;
     .Entrance {
-      .img {
-        width: 36vw;
+      img {
+        width: 100%;
       }
     }
     .CreateRoom {
@@ -70,8 +70,8 @@
       background-size: 100% 100%;
     }
     .x {
-      .img {
-        width: 6vw;
+      img {
+        width: 100%;
       }
     }
     .Rule {
