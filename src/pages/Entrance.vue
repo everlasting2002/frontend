@@ -112,6 +112,7 @@ import Btn from "../components/Btn.vue";
     top: calc((2/3*var(--height)));
     width: calc((2/3*var(--height)));
     font-size: calc((1/13*var(--height)));
+    color: #997A6A;
     margin: auto;
     text-align: center;
     z-index: 4;
