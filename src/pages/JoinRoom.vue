@@ -4,6 +4,8 @@
     <Btn class="createroom_x" @click="$router.push('Home')" type="x" img="/assets/img/createroom_x.png" />
     <div class="text_roomjoin">加入房间</div>
     <Btn class="loading_enter" @click="join()" type="Enter" content="确认加入" />
+    <img :src="`/assets/img/index_room.png`" class="index_room"/>
+    <img :src="`/assets/img/index_desk.png`" class="index_desk"/>
 
     <input class="name" :maxlength="10" type="text" placeholder="您的昵称" v-model="self.name" />
     <input class="roomnumber" :maxlength="10" type="text" placeholder="房间号" v-model="Room.roomNumber" />
@@ -32,7 +34,25 @@
   top: calc((100vh - var(--height)) / 2);
   margin: auto;
   overflow: hidden;
-
+  .index_room {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    position: absolute;
+    z-index: -2;
+  }
+  .index_desk {
+    width: 100%;
+    height: 80%;
+    top: calc(28/100*var(--height));
+    margin: auto;
+    position: absolute;
+    z-index: -1;
+  }
+  
+  input{
+    background: none;
+  }
   .createroom_bg {
     position: absolute;
     margin: auto;
@@ -70,6 +90,9 @@
     right: 0;
     top: calc((68/100*var(--height)));
     width: calc((50/100*var(--height)));
+    height: 2em;
+    color: #725D55;
+    font-size: calc(45/1000*var(--height));
     margin: auto;
     text-align: center;
     z-index: 2;

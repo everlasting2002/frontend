@@ -4,10 +4,10 @@
     :class="{ disabled }"
     @click="(e) => (disabled ? null : onClick(e))"
   >
-    <span :class="type">
+    <div :class="type" class="back">
       <p class="content" v-if="content">{{ content }}</p>
       <img :src="img" v-if="img" />
-    </span>
+    </div>
   </div>
 </template>
 
@@ -28,16 +28,23 @@
   .btn {
     cursor: pointer;
     display: inline-block;
+    p, img{
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      padding: 0px;
+    }
+    p{
+      padding-top: 0.45em;
+    }
     .x {
       img {
         width: 100%;
       }
     }
-    .Enter, .CreateRoom, .JoinRoom, .Introduction, .Recording, .Rule, .Start {
-      .content {
-        padding: 2rem;
-        display: inline-block;
-      }
+    .back {
+      height: 100%;
+      width: 100%;
       background-size: 100% 100%;
     }
     .Enter {

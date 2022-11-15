@@ -2,24 +2,13 @@
   <div class="waitroom">
     <!-- <RoomPlayerList :playerList="playerList"></RoomPlayerList> -->
     <div class="room-number">房间号：{{ number }}</div>
-    <div id="qr-code"></div>
-    <img
-      :src="`/assets/img/waitroom_bg.png`"
-      alt="waitroom_bg"
-      class="waitroom_bg"
-    />
-    <Btn class="text_rule" type="Rule" content="游戏规则" />
-    <Btn class="text_start" type="Start" content="开始游戏" v-if="self.index === Room.ownerID" />
-    <img
-      :src="`/assets/img/waitroom_players.png`"
-      alt="waitroom_players"
-      class="waitroom_players"
-    />
-    <img
-      :src="`/assets/img/waitroom_line.png`"
-      alt="waitroom_line"
-      class="waitroom_line"
-    />
+    
+    <img :src="`/assets/img/waitroom_bg.png`" class="waitroom_bg"/>
+    <img :src="`/assets/img/waitroom_players.png`" class="waitroom_players"/>
+    <img :src="`/assets/img/waitroom_line.png`" class="waitroom_line"/>
+    
+    <Btn id="waitroom_btn_rule" class="waitroom_btn" type="Rule" content="游戏规则" />
+    <Btn id="waitroom_btn_start" class="waitroom_btn" type="Start" content="开始游戏" v-if="self.index === Room.ownerID" :disabled="!canBegin" />
     <Btn class="waitroom_btn_return" @click="$router.push('Home')" type="x" img="/assets/img/waitroom_btn_return.png" />
   </div>
 </template>
@@ -66,41 +55,20 @@
       position: absolute;
       z-index: 1;
     }
-    .waitroom_btn_rule {
-      cursor: pointer;
+    .waitroom_btn{
       top: calc(75/100*var(--height));
       width: calc(20/100*var(--width));
+      height: 2em;
+      z-index: 2;
+      color: #5A8375;
+      position: absolute;
+      font-size: calc(45/1000*var(--height));
+    }
+    #waitroom_btn_rule {
       right: calc(25/100*var(--width));
-      position: absolute;
-      z-index: 2;
     }
-    .text_rule {
-      cursor: pointer;
-      right: calc(287/1000*var(--width));
-      top: calc(77/100*var(--height));
-      font-size: calc(45/1000*var(--height));
-      letter-spacing: calc(1/100*var(--height));
-      color: #5A8375;
-      position: absolute;
-      z-index: 3;
-    }
-    .waitroom_btn_start {
-      cursor: pointer;
-      top: calc(75/100*var(--height));
-      width: calc(20/100*var(--width));
+    #waitroom_btn_start {
       left: calc(25/100*var(--width));
-      position: absolute;
-      z-index: 2;
-    }
-    .text_start {
-      cursor: pointer;
-      left: calc(295/1000*var(--width));
-      top: calc(77/100*var(--height));
-      font-size: calc(45/1000*var(--height));
-      letter-spacing: calc(1/100*var(--height));
-      color: #5A8375;
-      position: absolute;
-      z-index: 3;
     }
     .waitroom_players {
       position: absolute;
