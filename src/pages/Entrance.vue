@@ -10,7 +10,7 @@
     </div>
     <img :src="`/assets/img/pm.png`" alt="logo" class="logo" />
     <div class="title">虚空劫灰往世书</div>
-    <Btn class="loading_enter" @click="$router.push('Home')" type="Entrance" img="/assets/img/loading_enter.png" />
+    <Btn class="loading_enter" @click="$router.push('Home')" type="Enter" content="点击进入" />
   </div>
 
 
