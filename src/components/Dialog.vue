@@ -1,60 +1,43 @@
 <template>
-  <UseMenu
-    v-show="dialogTimeLeft > 0"
-    :onCancel="() => (dialogTimeLeft = 0)"
-  >
-    <div class="dialog-content">
-      <span
-        class="content"
-        v-html="content && content.content"
-      ></span>
-      <div @click="dialogTimeLeft = 0" class="confirm">
-        确认({{ dialogTimeLeft }}s)
-      </div>
+  <div class="dialog-content" v-show="dialogTimeLeft > 0">
+    <span
+      class="content"
+      v-html="content && content.content"
+    ></span>
+    <div @click="dialogTimeLeft = 0" class="confirm">
+      确认({{ dialogTimeLeft }}s)
     </div>
-  </UseMenu>
+    <div class="dialog_background"></div>
+  </div>
 </template>
 
-<script lang="ts">
-  import { defineComponent, watch, watchEffect } from "vue";
+<script setup lang="ts">
+  import { watch} from "vue";
 
   import {
     content,
     dialogTimeLeft,
-    showDialog,
     toShowContents,
   } from "../reactivity/dialog";
-
-  import UseMenu from "./UseMenu.vue";
-
-  const Dialog = defineComponent({
-    name: "Dialog",
-    components: { UseMenu },
-    setup(props) {
-      var timer: number;
-
-      watch(content, () => {
-        if (content.value === null) {
+  
+  var timer: number;
+  watch(content, () => {
+    if (content.value === null) {
+      clearInterval(timer);
+      dialogTimeLeft.value = -1;
+    } else {
+      dialogTimeLeft.value = content.value.timeout;
+      timer = window.setInterval(() => {
+        dialogTimeLeft.value--;
+        if (dialogTimeLeft.value <= 0) {
           clearInterval(timer);
           dialogTimeLeft.value = -1;
-        } else {
-          dialogTimeLeft.value = content.value.timeout;
-          timer = window.setInterval(() => {
-            dialogTimeLeft.value--;
-            if (dialogTimeLeft.value <= 0) {
-              clearInterval(timer);
-              dialogTimeLeft.value = -1;
-              toShowContents.value.shift();
-            }
-          }, 1000);
+          toShowContents.value.shift();
         }
-      });
-
-      return { dialogTimeLeft, content };
-    },
+      }, 1000);
+    }
   });
 
-  export default Dialog;
 </script>
 
 <style lang="scss" scoped>
@@ -65,11 +48,40 @@
     justify-content: space-between;
     align-items: center;
     word-break: break-word;
-    padding: 1.5rem 0 0rem;
+    background-image: url("../../public/assets/img/Dialog.png");
+    background-size: 100% 100%;
+    z-index: 9999;
+    position: fixed;
+    width: calc(1/2*var(--width));
+    height: calc(1/2*var(--height));
+    top: 46vh;
+    margin-top: calc(-1/4*var(--height));
+    left: calc(1/4*var(--width));
+    .content{
+      position: absolute;
+      font-size: calc(45/1000*var(--height));
+      color: #B6AB97;
+      top: calc(0.3*var(--height));
+      text-align: center;
+      z-index: 9999;
+    }
+    .dialog_background{
+      position: fixed;
+      z-index: 999;
+      background: none;
+      height: 100%;
+      width: 100%;
+      top: 0px;
+      left: 0px;
+    }
     .confirm {
-      margin-top: 1rem;
-      padding: 0.5rem;
+      position: absolute;
+      margin-bottom: 1em;
+      font-size: calc(25/1000*var(--height));
+      bottom: 0px;
+      padding: 1em;
       cursor: pointer;
+      z-index: 9999;
     }
   }
 </style>
