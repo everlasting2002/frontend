@@ -38,22 +38,25 @@
         padding: 2rem;
         display: inline-block;
       }
-      opacity: 0.7;
       background-size: 100% 100%;
     }
     .Enter {
       background-image: url("/assets/img/border_loading_enter.png");
     }
     .CreateRoom {
+      opacity: 0.7;
       background-image: url("/assets/img/border_createroom.png");
     }
     .JoinRoom {
+      opacity: 0.7;
       background-image: url("/assets/img/border_joinroom.png");
     }
     .Introduction {
+      opacity: 0.7;
       background-image: url("/assets/img/border_introduction.png");
     }
     .Recording {
+      opacity: 0.7;
       background-image: url("/assets/img/border_recording.png");
     }
     .Rule {

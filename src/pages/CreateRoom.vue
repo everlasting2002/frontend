@@ -3,7 +3,7 @@
     <img :src="`/assets/img/createroom_bg.png`" alt="createroom_bg" class="createroom_bg" />
     <Btn class="createroom_x" @click="$router.push('Home')" type="x" img="/assets/img/createroom_x.png" />
     <div class="text_roomcreate">创建房间</div>
-    <Btn class="loading_enter" @click="create()" type="Enter" content="点击进入" />
+    <Btn class="loading_enter" @click="create()" type="Enter" content="确认创建" />
 
     <input class="name" :maxlength="10" type="text" placeholder="您的昵称" v-model="self.name" />
     <input class="password" type="text" :maxlength="20" placeholder="房间密码(可选)" v-model="Room.password" />
