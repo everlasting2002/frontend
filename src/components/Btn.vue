@@ -28,67 +28,42 @@
   .btn {
     cursor: pointer;
     display: inline-block;
-    .Entrance {
-      img {
-        width: 100%;
-      }
-    }
-    .CreateRoom {
-      .content {
-        padding: 2rem;
-        display: inline-block;
-      }
-      opacity: 0.7;
-      background-image: url("/assets/img/border_createroom.png");
-      background-size: 100% 100%;
-    }
-    .JoinRoom {
-      .content {
-        padding: 2rem;
-        display: inline-block;
-      }
-      opacity: 0.7;
-      background-image: url("/assets/img/border_joinroom.png");
-      background-size: 100% 100%;
-    }
-    .Introduction {
-      .content {
-        padding: 2rem;
-        display: inline-block;
-      }
-      opacity: 0.7;
-      background-image: url("/assets/img/border_introduction.png");
-      background-size: 100% 100%;
-    }
-    .Recording {
-      .content {
-        padding: 2rem;
-        display: inline-block;
-      }
-      opacity: 0.7;
-      background-image: url("/assets/img/border_recording.png");
-      background-size: 100% 100%;
-    }
     .x {
       img {
         width: 100%;
       }
     }
-    .Rule {
+    .Enter, .CreateRoom, .JoinRoom, .Introduction, .Recording, .Rule, .Start {
       .content {
         padding: 2rem;
         display: inline-block;
       }
-      background-image: url("/assets/img/waitroom_btn_rule.png");
       background-size: 100% 100%;
     }
+    .Enter {
+      background-image: url("/assets/img/border_loading_enter.png");
+    }
+    .CreateRoom {
+      opacity: 0.7;
+      background-image: url("/assets/img/border_createroom.png");
+    }
+    .JoinRoom {
+      opacity: 0.7;
+      background-image: url("/assets/img/border_joinroom.png");
+    }
+    .Introduction {
+      opacity: 0.7;
+      background-image: url("/assets/img/border_introduction.png");
+    }
+    .Recording {
+      opacity: 0.7;
+      background-image: url("/assets/img/border_recording.png");
+    }
+    .Rule {
+      background-image: url("/assets/img/waitroom_btn_rule.png");
+    }
     .Start {
-      .content {
-        padding: 2rem;
-        display: inline-block;
-      }
       background-image: url("/assets/img/waitroom_btn_start.png");
-      background-size: 100% 100%;
     }
     &.disabled {
       opacity: 0.6;
