@@ -15,10 +15,16 @@ WSConnect();
 
 <style lang="scss" scoped>
 .main {
+  position: relative;
+  width: var(--width);
+  height: var(--height);
+  top: calc((100vh - var(--height)) / 2);
   margin: auto;
+  overflow: hidden;
+  /* margin: auto;
   overflow: hidden;
   transform-origin: center center;
   box-sizing: border-box;
-  position: relative;
+  position: relative; */
 }
 </style>

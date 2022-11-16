@@ -37,12 +37,6 @@
 
 <style lang="scss" scoped>
   .waitroom {
-    position: relative;
-    width: var(--width);
-    height: var(--height);
-    top: calc((100vh - var(--height)) / 2);
-    margin: auto;
-    overflow: hidden;
     // #qr-code {
     //   position: absolute;
     //   margin: 5vh auto;
