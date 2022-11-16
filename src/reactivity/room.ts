@@ -1,9 +1,11 @@
-import { CreateRoomResponse,JoinRoomResponse,LeaveRoomResponse } from './../../shared/WSMsg';
 import { PlayerDef, Avatar } from './../../shared/ModelDefs';
 import { Room, self, players } from './game';
 import { socket } from './../socket/index';
 import router from '../router';
 import { showDialog } from './dialog';
+import { joinRoom } from './joinRoom';
+import { leaveRoom } from './leaveRoom';
+import { createRoom } from './createRoom';
 
 export async function WSConnect(){
 	socket.connect();
@@ -14,37 +16,6 @@ export async function WSConnect(){
 		if(recv.type=="joinRoom")joinRoom(recv);
 		if(recv.type=="leaveRoom")leaveRoom(recv);
 	};
-}
-
-function joinRoom(res : JoinRoomResponse){
-	if(res.result=="fail"){
-		return showDialog(res.reason);
-	}
-	self.value.index = res.ID;
-	router.push({
-		name: "waitRoom",
-	});
-	//console.log(res);
-}
-
-function leaveRoom(res : LeaveRoomResponse){
-	if(res.result=="fail"){
-		return showDialog(res.reason);
-	}
-	Room.value.roomNumber="";
-	router.push("Home");
-}
-
-function createRoom(res : CreateRoomResponse){
-	if(res.result=="fail"){
-		return showDialog(res.reason);
-	}
-	Room.value.roomNumber = res.roomNumber;
-	self.value.index = res.ID;
-	router.push({
-		name: "waitRoom",
-	});
-	//console.log(res);
 }
 
 function changeAvatar(str : Avatar){

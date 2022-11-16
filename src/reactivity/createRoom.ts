@@ -1,7 +1,5 @@
 import { socket } from './../socket/index';
-import { reactive, ref } from "vue";
-
-import { SetableCharacters } from "../../shared/GameDefs";
+import { CreateRoomResponse } from './../../shared/WSMsg';
 import router from "../router";
 import { showDialog } from "./dialog";
 import { self, players, Room } from "./game";
@@ -18,21 +16,16 @@ export async function create() {
 		name: self.value.name,
 		password: Room.value.password,
 	});
-  //if(){
-  /*   Room.value.roomNumber = "114514";//之后得改成从后端获取房间号
-    self.value.index=1;
-    router.push({
-      name: "waitRoom",
-    });
-    players.value = [
-      {
-        index: 1,
-        name: self.value.name,
-        isFairy: false,
-        teamVoted: [],
-        questVoted: [],
-        avatar: "PlayerGirl",
-      },
-    ]; */
-  //}
+}
+
+export function createRoom(res : CreateRoomResponse){
+	if(res.result=="fail"){
+		return showDialog(res.reason);
+	}
+	Room.value.roomNumber = res.roomNumber;
+	self.value.index = res.ID;
+	router.push({
+		name: "waitRoom",
+	});
+	//console.log(res);
 }

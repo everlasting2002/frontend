@@ -1,3 +1,4 @@
+import { JoinRoomResponse } from './../../shared/WSMsg';
 import { socket } from './../socket/index';
 import sha256 from "sha256";
 import { ref } from "vue";
@@ -16,4 +17,15 @@ export async function join() {
     roomNumber: Room.value.roomNumber,
 		password: Room.value.password,
 	});
+}
+
+export function joinRoom(res : JoinRoomResponse){
+	if(res.result=="fail"){
+		return showDialog(res.reason);
+	}
+	self.value.index = res.ID;
+	router.push({
+		name: "waitRoom",
+	});
+	//console.log(res);
 }
