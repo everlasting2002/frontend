@@ -7,13 +7,16 @@ import { joinRoom } from './joinRoom';
 import { leaveRoom } from './leaveRoom';
 import { createRoom } from './createRoom';
 import { startGame } from './startGame';
-import { beginGame } from './play';
+import { beginGame, refreshPlayers } from './play';
 
 export async function WSConnect(){
 	socket.connect();
 	socket.ws.onmessage = (msg: { data: any }) => {
 		const recv = JSON.parse(msg.data);
-		if(recv.type==="roomStatus")getRoomStatus(recv.playerList);
+		if(recv.type==="roomStatus"){
+			if(!Room.value.playing)getRoomStatus(recv.playerList);
+			else refreshPlayers(recv.playerList);
+		}
 		if(recv.type==="createRoom")createRoom(recv);
 		if(recv.type==="joinRoom")joinRoom(recv);
 		if(recv.type==="leaveRoom")leaveRoom(recv);
@@ -43,6 +46,7 @@ function getRoomStatus(data:any){
 			teamVoted: [],
 			questVoted: [],
 			avatar: data[i].avatar,
+			leave: false,
 		}
 		if(data[i].isOwner==true){
 			Room.value.ownerID=data[i].ID;

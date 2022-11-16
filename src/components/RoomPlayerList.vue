@@ -6,10 +6,9 @@
       class="player"
     >
       <Avatar :character="item.avatar"></Avatar>
-      <div class="index">
-        <span class="index-content">{{ item.index }}</span>
-      </div>
       <div class="name">{{item.name}}</div>
+      <div v-if="item.leave===false">在线</div>
+      <div v-if="item.leave===true">离线</div>
     </div>
   </div>
 </template>

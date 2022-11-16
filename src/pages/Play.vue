@@ -1,5 +1,6 @@
 <template>
-	<!-- 下面这块应该是个组件，现在凑合看身份用的 -->
+	<!-- 下面这些都应该是组件，现在凑合看用的 -->
+	<RoomPlayerList class="list" :playerList="players"></RoomPlayerList>
 	<div class="card">
 		<Avatar class="character" :character="self.character"></Avatar>
 		<p class="intro">
@@ -14,6 +15,7 @@
 	import Avatar from "../components/Avatar.vue";
 	import { players,self,Room } from "../reactivity/game";
 	import { CharacterIntro, ChineseNames } from "../../shared/GameDefs";
+	import RoomPlayerList from "../components/RoomPlayerList.vue";
 
 </script>
 
@@ -30,6 +32,9 @@
 		border-style: outset;
 		padding: 0.5em;
 		//下面这些也应该在组件里实现。
+		.list{
+			position: absolute;
+		}
 		.character{
 			width: 100%;
 		}

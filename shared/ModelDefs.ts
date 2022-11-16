@@ -21,6 +21,7 @@ export interface RoomDef{
 	remainingIndexes: index[];//空缺玩家号码
 	isFinished: boolean;//是否已经结束 -> 游戏结束重置
 	gameStatus: GameStatus[];//所有的游戏状态的栈，游戏结束重置
+	playing: boolean;
 }
 
 export interface PublicPlayerDef {
@@ -30,6 +31,7 @@ export interface PublicPlayerDef {
 	teamVoted: boolean[]; // 下标是轮数, value 是投了好票还是坏票
 	questVoted: boolean[]; // 下标是轮数, value 是投了好票还是坏票
 	avatar: Avatar;// 头像
+	leave: boolean;
 }
 
 export interface PlayerDef extends PublicPlayerDef {
