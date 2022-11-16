@@ -1,4 +1,4 @@
-import { CreateRoomResponse,JoinRoomResponse } from './../../shared/WSMsg';
+import { CreateRoomResponse,JoinRoomResponse,LeaveRoomResponse } from './../../shared/WSMsg';
 import { PlayerDef, Avatar } from './../../shared/ModelDefs';
 import { Room, self, players } from './game';
 import { socket } from './../socket/index';
@@ -12,6 +12,7 @@ export async function WSConnect(){
 		if(recv.type=="roomStatus")getRoomStatus(recv.playerList);
 		if(recv.type=="createRoom")createRoom(recv);
 		if(recv.type=="joinRoom")joinRoom(recv);
+		if(recv.type=="leaveRoom")leaveRoom(recv);
 	};
 }
 
@@ -24,6 +25,14 @@ function joinRoom(res : JoinRoomResponse){
 		name: "waitRoom",
 	});
 	//console.log(res);
+}
+
+function leaveRoom(res : LeaveRoomResponse){
+	if(res.result=="fail"){
+		return showDialog(res.reason);
+	}
+	Room.value.roomNumber="";
+	router.push("Home");
 }
 
 function createRoom(res : CreateRoomResponse){

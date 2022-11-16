@@ -10,3 +10,8 @@ export type JoinRoomResponse = {
 	ID: number,
 	reason: string,
 };
+
+export type LeaveRoomResponse = {
+	result: "success"|"fail",
+	reason: string,
+};
