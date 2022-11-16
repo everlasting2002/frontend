@@ -8,7 +8,7 @@
     <img :src="`/assets/img/waitroom_line.png`" class="waitroom_line"/>
     
     <Btn id="waitroom_btn_rule" class="waitroom_btn" type="Rule" content="游戏规则" />
-    <Btn id="waitroom_btn_start" class="waitroom_btn" type="Start" content="开始游戏" v-if="self.index === Room.ownerID" :disabled="!canBegin" />
+    <Btn id="waitroom_btn_start" class="waitroom_btn" @click="start()" type="Start" content="开始游戏" v-if="self.index === Room.ownerID" :disabled="!canBegin" />
     <Btn class="waitroom_btn_return" @click="leave()" type="x" img="/assets/img/waitroom_btn_return.png" />
   </div>
 </template>
@@ -23,12 +23,13 @@
   import { Ref } from "vue";
   import { socket } from "../socket";
   import { leave } from '../reactivity/leaveRoom';
+  import { start } from "../reactivity/startGame";
   
   const number = Room.value.roomNumber;
   const playerList = players;
   const canBegin = computed(()=>players.value.length >= 5);
   
-
+  
 </script>
 
 <style lang="scss" scoped>
