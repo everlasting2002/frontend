@@ -26,7 +26,7 @@ export async function WSConnect(){
 	};
 }
 
-function changeAvatar(str : Avatar){
+export function changeAvatar(str : Avatar){
 	socket.send({
 		type: "changeAvatar",
 		avatar: str,
