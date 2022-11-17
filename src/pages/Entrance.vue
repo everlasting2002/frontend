@@ -23,13 +23,6 @@ import Btn from "../components/Btn.vue";
 
 <style lang="scss" scoped>
 .main-page {
-  position: relative;
-  width: var(--width);
-  height: var(--height);
-  top: calc((100vh - var(--height)) / 2);
-  margin: auto;
-  overflow: hidden;
-
   .loading_bg_puzzle {
     z-index: 1;
     position: absolute;

@@ -1,41 +1,29 @@
-import { CreateRoomResponse,JoinRoomResponse } from './../../shared/WSMsg';
 import { PlayerDef, Avatar } from './../../shared/ModelDefs';
 import { Room, self, players } from './game';
 import { socket } from './../socket/index';
 import router from '../router';
 import { showDialog } from './dialog';
+import { joinRoom } from './joinRoom';
+import { leaveRoom } from './leaveRoom';
+import { createRoom } from './createRoom';
+import { startGame } from './startGame';
+import { beginGame, refreshPlayers } from './play';
 
 export async function WSConnect(){
 	socket.connect();
 	socket.ws.onmessage = (msg: { data: any }) => {
 		const recv = JSON.parse(msg.data);
-		if(recv.type=="roomStatus")getRoomStatus(recv.playerList);
-		if(recv.type=="createRoom")createRoom(recv);
-		if(recv.type=="joinRoom")joinRoom(recv);
+		if(recv.type==="roomStatus"){
+			if(!Room.value.playing)getRoomStatus(recv.playerList);
+			else refreshPlayers(recv.playerList);
+		}
+		if(recv.type==="createRoom")createRoom(recv);
+		if(recv.type==="joinRoom")joinRoom(recv);
+		if(recv.type==="leaveRoom")leaveRoom(recv);
+		if(recv.type==="startGame")startGame(recv);
+		if(recv.type==="beginGame")beginGame(recv);
+		
 	};
-}
-
-function joinRoom(res : JoinRoomResponse){
-	if(res.result=="fail"){
-		return showDialog(res.reason);
-	}
-	self.value.index = res.ID;
-	router.push({
-		name: "waitRoom",
-	});
-	//console.log(res);
-}
-
-function createRoom(res : CreateRoomResponse){
-	if(res.result=="fail"){
-		return showDialog(res.reason);
-	}
-	Room.value.roomNumber = res.roomNumber;
-	self.value.index = res.ID;
-	router.push({
-		name: "waitRoom",
-	});
-	//console.log(res);
 }
 
 function changeAvatar(str : Avatar){
@@ -58,6 +46,7 @@ function getRoomStatus(data:any){
 			teamVoted: [],
 			questVoted: [],
 			avatar: data[i].avatar,
+			leave: false,
 		}
 		if(data[i].isOwner==true){
 			Room.value.ownerID=data[i].ID;

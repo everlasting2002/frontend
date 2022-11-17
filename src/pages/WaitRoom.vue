@@ -8,8 +8,8 @@
     <img :src="`/assets/img/waitroom_line.png`" class="waitroom_line"/>
     
     <Btn id="waitroom_btn_rule" class="waitroom_btn" type="Rule" content="游戏规则" />
-    <Btn id="waitroom_btn_start" class="waitroom_btn" type="Start" content="开始游戏" v-if="self.index === Room.ownerID" :disabled="!canBegin" />
-    <Btn class="waitroom_btn_return" @click="$router.push('Home')" type="x" img="/assets/img/waitroom_btn_return.png" />
+    <Btn id="waitroom_btn_start" class="waitroom_btn" @click="start()" type="Start" content="开始游戏" v-if="self.index === Room.ownerID" :disabled="!canBegin" />
+    <Btn class="waitroom_btn_return" @click="leave()" type="x" img="/assets/img/waitroom_btn_return.png" />
   </div>
 </template>
 
@@ -21,28 +21,19 @@
   import { computed } from "@vue/reactivity";
   import router from "../router";
   import { Ref } from "vue";
+  import { socket } from "../socket";
+  import { leave } from '../reactivity/leaveRoom';
+  import { start } from "../reactivity/startGame";
   
   const number = Room.value.roomNumber;
   const playerList = players;
   const canBegin = computed(()=>players.value.length >= 5);
   
-  function gameBegin(){
-    setTimeout(() => {
-      router.push({
-        name: "play",
-      });
-    }, 500);
-  }
+  
 </script>
 
 <style lang="scss" scoped>
   .waitroom {
-    position: relative;
-    width: var(--width);
-    height: var(--height);
-    top: calc((100vh - var(--height)) / 2);
-    margin: auto;
-    overflow: hidden;
     // #qr-code {
     //   position: absolute;
     //   margin: 5vh auto;

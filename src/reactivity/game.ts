@@ -17,6 +17,7 @@ export const Room = ref<RoomDef>({
 	remainingIndexes: [],//空缺玩家号码
 	isFinished: false,//是否已经结束 -> 游戏结束重置
 	gameStatus: [],//所有的游戏状态的栈，游戏结束重置
+  playing: false,
 });
 /** 玩家的公开信息 */
 export const players: Ref<PublicPlayerDef[]> = ref([]);
@@ -32,6 +33,7 @@ export const self = ref<PlayerDef>({
   isFairy: false,
   name: "",
   avatar: "PlayerGirl",
+  leave: false,
 });
 /** 自己的角色 */
 export const character = computed(() =>
@@ -51,6 +53,5 @@ export const gameStatusTimeLeft = ref(
  * 获得最新的游戏信息
  */
 export async function refresh() {
-  self.value.character="MERLIN";
-  Room.value.currentRound=1;
+  
 }

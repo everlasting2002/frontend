@@ -28,12 +28,6 @@
 
 <style lang="scss" scoped>
 .joinroom {
-  position: relative;
-  width: var(--width);
-  height: var(--height);
-  top: calc((100vh - var(--height)) / 2);
-  margin: auto;
-  overflow: hidden;
   .index_room {
     width: 100%;
     height: 100%;

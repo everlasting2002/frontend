@@ -10,7 +10,7 @@ import Btn from "../components/Btn.vue";
     <img :src="`/assets/img/index_desk.png`" class="index_desk"/>
     <Btn class="homepage_button text_roomcreate" @click="$router.push('CreateRoom')" type="CreateRoom" content="创建房间" />
     <Btn class="homepage_button text_roomjoin" @click="$router.push('JoinRoom')" type="JoinRoom" content="加入房间" />
-    <Btn class="homepage_button text_introduction" @click="$router.push('')" type="Introduction" content="角色介绍" />
+    <Btn class="homepage_button text_introduction" @click="$router.push('character')" type="Introduction" content="角色介绍" />
     <Btn class="homepage_button text_recording" @click="$router.push('')" type="Recording" content="游戏记录" />
   </div>
   
@@ -23,12 +23,6 @@ import Btn from "../components/Btn.vue";
   }
 
   .main-page {
-    position: relative;
-    width: var(--width);
-    height: var(--height);
-    top: calc((100vh - var(--height)) / 2);
-    margin: auto;
-    overflow: hidden;
     .index_room {
       width: 100%;
       height: 100%;
