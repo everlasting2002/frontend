@@ -31,7 +31,7 @@
   const number = Room.value.roomNumber;
   const playerList = players;
   const canBegin = computed(()=>players.value.length >= 5);
-  const refRule = ref(null);
+  const refRule = ref<any>(null);
   
   
 </script>
