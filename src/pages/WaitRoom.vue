@@ -7,9 +7,10 @@
     <img :src="`/assets/img/waitroom_players.png`" class="waitroom_players"/>
     <img :src="`/assets/img/waitroom_line.png`" class="waitroom_line"/>
     
-    <Btn id="waitroom_btn_rule" class="waitroom_btn" type="Rule" content="游戏规则" />
+    <Btn id="waitroom_btn_rule" class="waitroom_btn" @click="refRule.showRule()" type="Rule" content="游戏规则" />
     <Btn id="waitroom_btn_start" class="waitroom_btn" @click="start()" type="Start" content="开始游戏" v-if="self.index === Room.ownerID" :disabled="!canBegin" />
     <Btn class="waitroom_btn_return" @click="leave()" type="x" img="/assets/img/waitroom_btn_return.png" />
+    <Rule content="游戏规则" ref="refRule" />
   </div>
 </template>
 
@@ -24,10 +25,13 @@
   import { socket } from "../socket";
   import { leave } from '../reactivity/leaveRoom';
   import { start } from "../reactivity/startGame";
+  import { ref } from "vue";
+  import Rule from "../components/Rule.vue";
   
   const number = Room.value.roomNumber;
   const playerList = players;
   const canBegin = computed(()=>players.value.length >= 5);
+  const refRule = ref(null);
   
   
 </script>
