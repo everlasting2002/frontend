@@ -1,9 +1,12 @@
 <template>
     <div class="intro">
         <div class="image">
-            <img class="ima" :src="`/assets/avatar/${character.toLowerCase()}.png`" alt="character" />
+            <img class="ima" :src="`/assets/tachie/${character.toLowerCase()}.png`" alt="character" />
+            <img class="border" :src="'/assets/img/characters_border.png'" alt="border" />
         </div>
-        <div class="name"> {{ name }} </div>
+        <div class="name">
+            <p>{{ name }}</p>
+        </div>
         <p class="text"> {{ text }} </p>
     </div>
 </template>
@@ -31,41 +34,43 @@ const text = computed(
 
 <style lang="scss" scoped>
 .intro {
-    position: absolute;
-    padding-block: 1vw;
-    padding-inline: 1vw;
-    text-align: center;
-    height: 80%;
-    width: 20%;
-    // margin: auto;
-    background-color: lightgray;
+    height: 100%;
+    width: 25%;
 
     .image {
-        background-color: lightyellow;
         height: 60%;
-        // border: 1px solid green;
-        margin: 0 auto;
+        margin-bottom: 10%;
 
         .ima {
             height: auto;
-            width: auto;
-            max-width: 100%;
+            width: 100%;
+            position: absolute;
+        }
+
+        .border {
+            height: auto;
+            width: 100%;
+            position: relative;
+        }
+    }
+    .name {
+        background-image: url("/assets/img/characters_label.png");
+        background-size: 100% 100%;
+        margin-bottom: 15%;
+        // height: 10%; // 设定高度会有bug
+        padding-block: 8%;
+        text-align: center;
+        p {
+            color: #5A8375;
         }
     }
 
-    .name {
-        background-color: lightcoral;
-        height: 5%;
-        margin: 0 auto;
-
-    }
-
     .text {
-        background-color: lightblue;
         overflow: scroll;
         height: 35%;
         margin: 0 auto;
-        // min-height: ;
+        color: white;
+        line-height: 150%;
     }
 }
 </style>
