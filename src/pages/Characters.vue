@@ -1,6 +1,7 @@
 <template>
 	<!-- <Intro class="tmp" image_src="../public/assets/avatar/albedo.png" name="albedo" text="神奇的阿贝多"/> -->
-	<Intros class="introductions"/>
+	<img :src="`/assets/img/characters_bg.png`" class="characters_bg" />
+	<Intros class="introductions" />
 	<Btn class="waitroom_btn_return" @click="$router.push('Home')" type="x" img="/assets/img/waitroom_btn_return.png" />
 </template>
 
@@ -10,10 +11,19 @@ import Intros from "../components/Intros.vue";
 </script>
 
 <style lang="scss" scoped>
+.characters_bg {
+	width: 100%;
+	height: 100%;
+	margin: auto;
+	position: absolute;
+	z-index: 1;
+}
+
 .introductions {
 	position: absolute;
 	width: var(--width);
-  	height: var(--height);
+	height: var(--height);
+	z-index: 2;
 }
 
 .waitroom_btn_return {

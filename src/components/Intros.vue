@@ -1,12 +1,12 @@
 <template>
     <div class="intros">
-        <Btn class="left" @click="leftPage" img="/assets/img/waitroom_btn_return.png" />
+        <Btn class="left" @click="leftPage" img="/assets/img/arrow-left.svg" />
         <div class="mid">
             <Intro class="p1" :character="ch1"></Intro>
             <Intro class="p2" :character="ch2"></Intro>
             <Intro class="p3" :character="ch3"></Intro>
         </div>
-        <Btn class="right" @click="rightPage" img="/assets/img/waitroom_btn_return.png" />
+        <Btn class="right" @click="rightPage" img="/assets/img/arrow-right.svg" />
     </div>
 </template>
 
@@ -57,7 +57,7 @@ const rightPage = () => {
         width: calc(20/100*var(--height));
         --width: calc(20/100*var(--height));
         position: absolute;
-        left: 5%;
+        left: 8%;
         top: calc(50% - var(--width) / 2);
     }
 
@@ -67,7 +67,7 @@ const rightPage = () => {
         width: calc(20/100*var(--height));
         --width: calc(20/100*var(--height));
         position: absolute;
-        right: 5%;
+        right: 8%;
         top: calc(50% - var(--width) / 2);
     }
 
