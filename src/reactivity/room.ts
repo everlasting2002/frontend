@@ -7,22 +7,24 @@ import { joinRoom } from './joinRoom';
 import { leaveRoom } from './leaveRoom';
 import { createRoom } from './createRoom';
 import { startGame } from './startGame';
-import { beginGame, refreshPlayers } from './play';
+import { beginGame, endGame, refreshPlayers } from './play';
 
 export async function WSConnect(){
 	socket.connect();
 	socket.ws.onmessage = (msg: { data: any }) => {
 		const recv = JSON.parse(msg.data);
+		console.log(recv);
 		if(recv.type==="roomStatus"){
 			if(!Room.value.playing)getRoomStatus(recv.playerList);
 			else refreshPlayers(recv.playerList);
 		}
-		if(recv.type==="createRoom")createRoom(recv);
-		if(recv.type==="joinRoom")joinRoom(recv);
-		if(recv.type==="leaveRoom")leaveRoom(recv);
-		if(recv.type==="startGame")startGame(recv);
-		if(recv.type==="beginGame")beginGame(recv);
-		
+		else if(recv.type==="createRoom")createRoom(recv);
+		else if(recv.type==="joinRoom")joinRoom(recv);
+		else if(recv.type==="leaveRoom")leaveRoom(recv);
+		else if(recv.type==="startGame")startGame(recv);
+		else if(recv.type==="beginGame")beginGame(recv);
+		else if(recv.type==="endGame")endGame(recv);
+		//else console.log(recv);
 	};
 }
 

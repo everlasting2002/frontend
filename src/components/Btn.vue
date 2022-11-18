@@ -28,14 +28,8 @@
   .btn {
     cursor: pointer;
     display: inline-block;
-    p, img{
-      width: 100%;
-      height: 100%;
+    img{
       text-align: center;
-      padding: 0px;
-    }
-    p{
-      padding-top: 0.45em;
     }
     .x {
       img {
@@ -46,6 +40,10 @@
       height: 100%;
       width: 100%;
       background-size: 100% 100%;
+      display: flex;
+      align-content: space-around;
+      justify-content: space-around;
+      flex-wrap: wrap;
     }
     .Enter {
       background-image: url("/assets/img/border_loading_enter.png");

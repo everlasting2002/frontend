@@ -1,7 +1,7 @@
 import { computed, ref } from "vue";
 
-export const dialogTimeLeft = ref(0);
-export const toShowContents = ref<{ content: string; timeout: number }[]>([]);
+export const dialogType = ref(0);
+export const toShowContents = ref<{ content: string,type: number,Func: Function }[]>([]);
 export const content = computed(() =>
   toShowContents.value.length ? toShowContents.value[0] : null
 );
@@ -13,10 +13,12 @@ export const content = computed(() =>
  */
 export function showDialog(
   toShowContent: string,
-  showTime?: number
+  showType?: number,
+  Func?: Function,
 ) {
   toShowContents.value.push({
     content: toShowContent,
-    timeout: showTime || 5,
+    type: showType || 1,
+    Func: Func || function(){},
   });
 }

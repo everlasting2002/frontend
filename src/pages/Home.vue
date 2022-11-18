@@ -39,16 +39,16 @@ import Btn from "../components/Btn.vue";
       z-index: 2;
     }
     .homepage_button{
-      height: 2em;
+      height: 2.5em;
       position: absolute;
       font-size: calc(45/1000*var(--height));
-      width: 6em;
+      width: 7em;
       color: #725D55;
       letter-spacing: calc(1/100*var(--height));
       z-index: 4;
     }
     .text_roomcreate {
-      left: calc(29/100*var(--width));
+      left: calc(27/100*var(--width));
       top: calc(22/100*var(--height));
     }
     .text_roomjoin {
@@ -56,12 +56,12 @@ import Btn from "../components/Btn.vue";
       top: calc(26/100*var(--height));
     }
     .text_introduction {
-      right: calc(28/100*var(--width));
-      top: calc(48/100*var(--height));
+      right: calc(27/100*var(--width));
+      top: calc(46/100*var(--height));
     }
     .text_recording {
-      left: calc(33/100*var(--width));
-      top: calc(51/100*var(--height));
+      left: calc(31/100*var(--width));
+      top: calc(50/100*var(--height));
     }
   }
 </style>
