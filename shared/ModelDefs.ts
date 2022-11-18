@@ -8,7 +8,63 @@ export type Avatar =
 	| "PlayerGirl"
 	| "Ayaka"
 	| "Albedo"
+	| "Klee"
+	| "Kazuha"
+	| "Xiao"
+	| "Zhongli"
+	| "Venti"
+	| "Ayato"
+	| "Cyno"
+	| "Diluc"
+	| "Eula"
+	| "Ganyu"
+	| "Hutao"
+	| "Itto"
+	| "Keqing"
+	| "Kokomi"
+	| "Mona"
+	| "Nilou"
+	| "Qin"
+	| "Qiqi"
+	| "Shenhe"
+	| "Shougun"
+	| "Tartaglia"
+	| "Tighnari"
+	| "Yae"
+	| "Yelan"
+	| "Yoimiya"
 	| "";
+
+export const avatarNames = [
+	"PlayerGirl",
+	"Ayaka",
+	"Albedo",
+	"Kazuha",
+	"Klee",
+	"Xiao",
+	"Zhongli",
+	"Venti",
+	"Ayato",
+	"Cyno",
+	"Diluc",
+	"Eula",
+	"Ganyu",
+	"Hutao",
+	"Itto",
+	"Keqing",
+	"Kokomi",
+	"Mona",
+	"Nilou",
+	"Qin",
+	"Qiqi",
+	"Shenhe",
+	"Shougun",
+	"Tartaglia",
+	"Tighnari",
+	"Yae",
+	"Yelan",
+	"Yoimiya",
+];
 
 export interface RoomDef{
 	roomNumber: string;//房间号码

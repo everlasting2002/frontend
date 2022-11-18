@@ -18,7 +18,7 @@ export function beginGame(res : BeginGameResponse){
 }
 
 export function refreshPlayers(data : any){
-	console.log(data);
+	//console.log(data);
 	let online=[];
 	for(const i in data){
 		if(data[i].online)online.push(data[i].ID);
@@ -28,6 +28,6 @@ export function refreshPlayers(data : any){
 			players.value[i].leave=true;
 		}
 	}
-	console.log(players);
-	console.log(online);
+	//console.log(players);
+	//console.log(online);
 }

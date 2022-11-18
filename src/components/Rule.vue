@@ -13,7 +13,7 @@
   import { ref } from "vue";
   import Btn from "./Btn.vue";
 
-  var show = ref(true);
+  var show = ref(false);
 
   const showRule = () => {
     show.value = true;
