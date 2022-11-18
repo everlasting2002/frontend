@@ -9,40 +9,17 @@
       v-html="content && content.content"
     ></span>
     <div class="buttons">
-      <div @click="dialogType=0" class="confirm" v-if="dialogType===1">
-        确认
-      </div>
-      <div @click="content && content.Func(),dialogType=0" class="confirm" v-if="dialogType===2">
-        确认
-      </div>
-      <div @click="dialogType=0" class="cancel" v-if="dialogType===2">
-        取消
-      </div>
+      <GenshinBtnVue v-if="dialogType===1" class="confirm" @click="dialogType=0" content="确认" theme="light" type="o"></GenshinBtnVue>
+      <GenshinBtnVue v-if="dialogType===2" class="confirm" @click="content && content.Func(),dialogType=0" content="确认" theme="light" type="o"></GenshinBtnVue>
+      <GenshinBtnVue v-if="dialogType===2" class="cancel" @click="dialogType=0" content="取消" theme="light" type="x"></GenshinBtnVue>
     </div>
     <div class="dialog_background"></div>
   </div>
-  <!-- <div class="change-avatar" v-show="show">
-    <div class="change-avatar-card">
-      <div class="change-avatar-header">
-        <img src="../../public/assets/img/changeAvatar/close.png" class="change-avatar-close" @click="show = false"  />
-        <p>更换头像</p>
-      </div>
-      <div class="Avatars">
-        <div v-for="item in avatarNames" class="change-avatar-avatar">
-          <AvatarVue :character="item" @click="()=>{changeAvatar(item as Avatar);show = false;}"></AvatarVue>
-        </div>
-      </div>
-      <img src="../../public/assets/img/changeAvatar/corner.png" class="change-avatar_corner change-avatar_corner-tl" />
-      <img src="../../public/assets/img/changeAvatar/corner.png" class="change-avatar_corner change-avatar_corner-tr" />
-      <img src="../../public/assets/img/changeAvatar/corner.png" class="change-avatar_corner change-avatar_corner-bl" />
-      <img src="../../public/assets/img/changeAvatar/corner.png" class="change-avatar_corner change-avatar_corner-br" />
-    </div>
-    <div class="change-avatar-background"></div>
-  </div> -->
 </template>
 
 <script setup lang="ts">
   import { watch} from "vue";
+  import GenshinBtnVue from "./GenshinBtn.vue";
 
   import {
     content,
@@ -118,16 +95,9 @@
       width: 100%;
       justify-content: space-evenly;
       .confirm ,.cancel {
-        display: flex;
         position: relative;
-        cursor: pointer;
         height: calc(30/1000*var(--width));
         width: calc(140/1000*var(--width));
-        background-color: #ece5d8;
-        justify-content: center;
-        align-items: center;
-        border-radius: 12%/50%;
-        color: #3b4354;
       }
     }
     .change-avatar_corner{
