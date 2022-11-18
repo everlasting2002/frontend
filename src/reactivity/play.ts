@@ -1,7 +1,9 @@
-import { PlayerDef } from './../../shared/ModelDefs';
+import { PublicPlayerDef } from './../../shared/ModelDefs';
 import { players, Room, self } from './game';
-import { BeginGameResponse } from './../../shared/WSMsg';
+import { BeginGameResponse, EndGameResponse } from './../../shared/WSMsg';
 import router from '../router';
+import { socket } from './../socket/index';
+import { showDialog } from './dialog';
 
 export function beginGame(res : BeginGameResponse){
 	if(res.fairyID===self.value.index){
@@ -15,6 +17,15 @@ export function beginGame(res : BeginGameResponse){
 	Room.value.playing=true;
 	self.value.character=res.role;
 	router.push("play");
+}
+
+export function endGame(res : EndGameResponse){
+	Room.value.playing=false;
+	self.value.isFairy=false;
+	self.value.character="";
+	router.push("waitRoom");
+	//console.log(res);
+	showDialog((res.win?"好那菈清理了死域!<br/><br/>":"死域将继续蔓延。<br/><br/>")+res.reason);
 }
 
 export function refreshPlayers(data : any){

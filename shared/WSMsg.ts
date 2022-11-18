@@ -28,3 +28,9 @@ export type BeginGameResponse = {
 	role: SetableCharacters,
 	fairyID: index,
 };
+
+export type EndGameResponse = {
+	win: boolean,
+	reason: string,
+	roleList: [],
+};

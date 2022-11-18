@@ -14,10 +14,10 @@ export type Character =
 	| "";
 
 export const ChineseNames: Record<Character, string> = {
-	MERLIN: "纳西妲",
+	MERLIN: "草神",
 	PERCIVAL: "旅行者",
-	ASSASSIN: "散兵",
-	MORDRED: "博士",
+	ASSASSIN: "博士",
+	MORDRED: "散兵",
 	OBERON: "拉赫曼",
 	MORGANA: "赤王",
 	LOYALIST: "森林的子民",

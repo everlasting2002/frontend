@@ -34,15 +34,16 @@
     justify-content: space-between;
     align-items: center;
     word-break: break-word;
-    background-image: url("../../public/assets/img/Dialog.png");
+    background-image: url("../../public/assets/img/ruler/ruler_border.png");
     background-size: 100% 100%;
     z-index: 9999;
     position: fixed;
-    width: calc(1/2*var(--width));
-    height: calc(1/2*var(--height));
-    top: 46vh;
-    margin-top: calc(-1/4*var(--height));
-    left: calc(1/4*var(--width));
+    width: calc(75/100*var(--height)*2048/1080);
+    height: calc(75/100*var(--height));
+    top: 50vh;
+    margin-top: calc(-75/200*var(--height));
+    margin-left: calc(-75/200*var(--height)*2048/1080);
+    left: 50vw;
     .content{
       position: absolute;
       width: calc(1/4*var(--width));

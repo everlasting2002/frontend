@@ -73,10 +73,8 @@ export interface RoomDef{
 	currentRound: round;//当前轮数 -> 游戏结束重置
 	currentTeamVote: TeamVoteNumber;//当前组队投票轮数 -> 游戏结束重置
 	prevTeamVote: TeamVoteNumber;//上一次组队投票成功的轮数 -> 游戏结束重置
-	needingChatacters: Character[];//设置的角色
-	remainingIndexes: index[];//空缺玩家号码
+	taskResult: number[];
 	isFinished: boolean;//是否已经结束 -> 游戏结束重置
-	gameStatus: GameStatus[];//所有的游戏状态的栈，游戏结束重置
 	playing: boolean;
 }
 
