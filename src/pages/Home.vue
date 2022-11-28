@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { ref, defineComponent } from 'vue'
 import Btn from "../components/Btn.vue";
+import CreateRoom from "../components/CreateRoom.vue";
+import JoinRoom from "../components/JoinRoom.vue";
+
+const refCreateRoom = ref<any>(null);
+const refJoinRoom = ref<any>(null);
 
 </script>
 
@@ -8,10 +13,12 @@ import Btn from "../components/Btn.vue";
   <div class="main-page">
     <img :src="`/assets/img/index_room.png`" class="index_room"/>
     <img :src="`/assets/img/index_desk.png`" class="index_desk"/>
-    <Btn class="homepage_button text_roomcreate" @click="$router.push('CreateRoom')" type="CreateRoom" content="创建房间" />
-    <Btn class="homepage_button text_roomjoin" @click="$router.push('JoinRoom')" type="JoinRoom" content="加入房间" />
+    <Btn class="homepage_button text_roomcreate" @click="refCreateRoom.showCreateRoom()" type="CreateRoom" content="创建房间" />
+    <Btn class="homepage_button text_roomjoin" @click="refJoinRoom.showJoinRoom()" type="JoinRoom" content="加入房间" />
     <Btn class="homepage_button text_introduction" @click="$router.push('character')" type="Introduction" content="角色介绍" />
     <Btn class="homepage_button text_recording" @click="$router.push('')" type="Recording" content="游戏记录" />
+    <CreateRoom ref="refCreateRoom" />
+    <JoinRoom ref="refJoinRoom" />
   </div>
   
 </template>
