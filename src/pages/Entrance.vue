@@ -6,8 +6,13 @@
     <img :src="`/assets/img/loading_pgy3.png`" alt="loading_pgy3" class="loading_pgy3" />
     <img :src="`/assets/img/loading_pgy3.png`" alt="loading_pgy3_1" class="loading_pgy3_1" />
     <img :src="`/assets/img/loading_pgy4.png`" alt="loading_pgy4" class="loading_pgy4" />
-    <div id="pgy" ref="pgy" class="pgy">
-    </div>
+
+    <img :src="`/assets/img/minipgy/loading_minipgy.png`" alt="loading_minipgy" class="loading_minipgy" />
+    <img :src="`/assets/img/minipgy/loading_minipgyball.png`" alt="loading_minipgyball" class="loading_minipgyball" />
+    <img :src="`/assets/img/minipgy/ball_2.png`" alt="ball_2" class="ball_2" />
+    <img :src="`/assets/img/minipgy/mini_2.png`" alt="mini_2" class="mini_2" />
+    <img :src="`/assets/img/minipgy/ball_2.png`" alt="ball_3" class="ball_3" />
+
     <img :src="`/assets/img/pm.png`" alt="logo" class="logo" />
     <div class="title">虚空劫灰往世书</div>
     <Btn class="loading_enter" @click="$router.push('Home')" type="Enter" content="点击进入" />
@@ -18,7 +23,11 @@
 
 <script setup lang="ts">
 import Btn from "../components/Btn.vue";
-
+import { floating_pgy } from "../reactivity/entrance";
+import { onMounted } from "vue";
+onMounted(() => {
+  floating_pgy();
+})
 </script>
 
 <style lang="scss" scoped>
@@ -37,6 +46,7 @@ import Btn from "../components/Btn.vue";
 
   .loading_pgy2 {
     position: absolute;
+    transform-origin: bottom;
     opacity: 1;
     width: calc(10/100*var(--width));
     left: calc(18/100*var(--width));
@@ -46,6 +56,7 @@ import Btn from "../components/Btn.vue";
 
   .loading_pgy3 {
     position: absolute;
+    // transform-origin: bottom;
     opacity: 0.8;
     width: calc(25/100*var(--width));
     right: calc(4/100*var(--width));
@@ -64,10 +75,56 @@ import Btn from "../components/Btn.vue";
 
   .loading_pgy4 {
     position: absolute;
+    transform-origin: bottom;
     width: calc(38/100*var(--width));
-    left: calc(8/100*var(--width)*(-1));
+    left: calc(-8/100*var(--width));
     top: calc(45/100*var(--height));
     z-index: 2;
+  }
+
+  .loading_minipgy {
+    position: absolute;
+    opacity: 0.9;
+    width: calc(5/100*var(--width));
+    left: calc(1/100*var(--width));
+    top: calc(85/100*var(--height));
+    z-index: 6;
+  }
+
+  .loading_minipgyball {
+    position: absolute;
+    opacity: 0.7;
+    width: calc(7/100*var(--width));
+    left: calc(1/100*var(--width));
+    top: calc(85/100*var(--height));
+    z-index: 6;
+  }
+
+  .ball_2 {
+    position: absolute;
+    opacity: 0.4;
+    width: calc(9/100*var(--width));
+    left: calc(1/100*var(--width));
+    top: calc(85/100*var(--height));
+    z-index: 6;
+  }
+
+  .ball_3 {
+    position: absolute;
+    opacity: 0.4;
+    width: calc(9/100*var(--width));
+    left: calc(25/100*var(--width));
+    top: calc(60/100*var(--height));
+    z-index: 6;
+  }
+
+  .mini_2 {
+    position: absolute;
+    opacity: 0.5;
+    width: calc(6/100*var(--width));
+    left: calc(1/100*var(--width));
+    top: calc(85/100*var(--height));
+    z-index: 6;
   }
 
   .logo {
