@@ -22,12 +22,8 @@
 <script setup lang="ts">
   import RoomPlayerList from "../components/RoomPlayerList.vue";
   import { players,self,Room } from "../reactivity/game";
-  import { showDialog } from "../reactivity/dialog";
   import Btn from "../components/Btn.vue";
   import { computed } from "@vue/reactivity";
-  import router from "../router";
-  import { Ref } from "vue";
-  import { socket } from "../socket";
   import { leave } from '../reactivity/leaveRoom';
   import { start } from "../reactivity/startGame";
   import { ref } from "vue";
@@ -45,12 +41,6 @@
 
 <style lang="scss" scoped>
   .waitroom {
-    // #qr-code {
-    //   position: absolute;
-    //   margin: 5vh auto;
-    //   width: 20px;
-    //   z-index: 2;
-    // }
     .list{
       position: absolute;
       margin: auto;
@@ -152,14 +142,5 @@
       width: calc(10/100*var(--height));
       z-index: 2;
     }
-    // .btn {
-    //   position: absolute;
-    //   top:50px;
-    //   isplay: block;
-    //   left:500px;
-    //   text-align: center;
-    //   margin: 1rem;
-    //   z-index: 2;
-    // }
   }
 </style>
