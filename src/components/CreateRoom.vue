@@ -1,11 +1,9 @@
 <template>
   <div class="createroom" v-show="show">
     <img :src="`/assets/img/createroom_bg.png`" alt="createroom_bg" class="createroom_bg" />
-    <Btn class="createroom_x" @click="show = false" type="x" img="/assets/img/createroom_x.png" />
+    <Btn class="createroom_x" @click="hileCreateRoom" type="x" img="/assets/img/createroom_x.png" />
     <div class="text_roomcreate">创建房间</div>
     <Btn class="loading_enter" @click="create()" type="Enter" content="确认创建" />
-    <img :src="`/assets/img/index_room.png`" class="index_room"/>
-    <img :src="`/assets/img/index_desk.png`" class="index_desk"/>
 
     <input class="name" :maxlength="10" type="text" placeholder="您的昵称" v-model="self.name" />
     <input class="password" type="text" :maxlength="20" placeholder="房间密码(可选)" v-model="Room.password" />
@@ -14,45 +12,58 @@
 </template>
 
 <script setup lang="ts">
-  import { ref } from "vue";
-  import Btn from "../components/Btn.vue";
-  import {self,Room} from "../reactivity/game";
+import { ref, watch } from "vue";
+import Btn from "../components/Btn.vue";
+import { self, Room } from "../reactivity/game";
+import { gsap } from "gsap";
 
-  import {
-    create,
-  } from "../reactivity/createRoom";
+import {
+  create,
+} from "../reactivity/createRoom";
 
-  var show = ref(false);
+var show = ref(false);
 
-  const showCreateRoom = () => {
-    show.value = true;
-  }
+const showCreateRoom = () => {
+  show.value = true;
+  gsap.fromTo(".createroom", {
+    opacity: 0,
+    scale: 0.8,
+  }, {
+    opacity: 1,
+    scale: 1,
+    duration: 0.3,
+  });
+}
 
-  defineExpose({ showCreateRoom })
+const hileCreateRoom = () => {
+  gsap.fromTo(".createroom", {
+    opacity: 1,
+    scale: 1,
+  }, {
+    opacity: 0,
+    scale: 0.8,
+    duration: 0.3,
+    onComplete() {
+      show.value = false;
+    }
+  });
+}
+
+defineExpose({ showCreateRoom })
 
 </script>
 
 <style lang="scss" scoped>
 .createroom {
-  .index_room {
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    position: absolute;
-    z-index: 6;
-  }
-  .index_desk {
-    width: 100%;
-    height: 80%;
-    top: calc(28/100*var(--height));
-    margin: auto;
-    position: absolute;
-    z-index: 7;
-  }
+  height: 100%;
+  width: 100%;
+  position: relative;
+  z-index: 9;
 
-  input{
+  input {
     background: none;
   }
+
   .createroom_bg {
     position: absolute;
     margin: auto;

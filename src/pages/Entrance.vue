@@ -15,15 +15,14 @@
 
     <img :src="`/assets/img/pm.png`" alt="logo" class="logo" />
     <div class="title">虚空劫灰往世书</div>
-    <Btn class="loading_enter" @click="$router.push('Home')" type="Enter" content="点击进入" />
+    <Btn class="loading_enter" @click="skip" type="Enter" content="点击进入" />
   </div>
-
 
 </template>
 
 <script setup lang="ts">
 import Btn from "../components/Btn.vue";
-import { floating_pgy } from "../reactivity/entrance";
+import { floating_pgy, skip } from "../reactivity/entrance";
 import { onMounted } from "vue";
 onMounted(() => {
   floating_pgy();
