@@ -8,6 +8,7 @@ import { leaveRoom } from './leaveRoom';
 import { createRoom } from './createRoom';
 import { startGame } from './startGame';
 import { beginGame, endGame, refreshPlayers } from './play';
+import { recvMessage, sendMessagerecv } from './chat';
 
 export async function WSConnect(){
 	socket.connect();
@@ -24,6 +25,8 @@ export async function WSConnect(){
 		else if(recv.type==="startGame")startGame(recv);
 		else if(recv.type==="beginGame")beginGame(recv);
 		else if(recv.type==="endGame")endGame(recv);
+		else if(recv.type==="playerTextMessage")sendMessagerecv(recv);
+		else if(recv.type==="textMessage")recvMessage(recv);
 		//else console.log(recv);
 	};
 }

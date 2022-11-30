@@ -4,6 +4,7 @@ import { BeginGameResponse, EndGameResponse } from './../../shared/WSMsg';
 import router from '../router';
 import { socket } from './../socket/index';
 import { showDialog } from './dialog';
+import { chatInit } from './chat';
 
 export function beginGame(res : BeginGameResponse){
 	if(res.fairyID===self.value.index){
@@ -16,6 +17,7 @@ export function beginGame(res : BeginGameResponse){
 	}
 	Room.value.playing=true;
 	self.value.character=res.role;
+	chatInit();
 	router.push("play");
 }
 

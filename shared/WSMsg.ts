@@ -34,3 +34,13 @@ export type EndGameResponse = {
 	reason: string,
 	roleList: [],
 };
+
+export type MessageResponse = {
+	result: "success"|"fail",
+	reason: string,
+};
+
+export type MessageReceive = {
+	ID: index,
+	message: string,
+};
