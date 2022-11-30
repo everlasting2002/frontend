@@ -15,6 +15,7 @@ WSConnect();
 
 <style lang="scss" scoped>
 .main {
+  background-color: black;
   position: relative;
   width: var(--width);
   height: var(--height);
