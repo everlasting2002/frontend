@@ -1,4 +1,16 @@
 import gsap from "gsap"
+import router from "../router";
+export function skip() {
+  gsap.to(".main-page", {
+    opacity: 0,
+    duration: 0.5,
+    onComplete() {
+      router.push({
+        name: "home",
+      });
+    }
+  })
+}
 export function floating_pgy() {
   gsap.fromTo(".loading_pgy2", {
     rotate: -3,
