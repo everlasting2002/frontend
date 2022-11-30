@@ -120,7 +120,7 @@
           display: inline-flex;
           align-items: center;
 
-          background-color: #000000CC;
+          background-color: #00000099;
           color: #ECDFD5;
 
           opacity: 0;
@@ -140,7 +140,7 @@
       top:calc(5/100*var(--height));
       left: calc(5/100*var(--height));
       width: calc(10/100*var(--height));
-      z-index: 2;
+      z-index: 4;
     }
   }
 </style>
