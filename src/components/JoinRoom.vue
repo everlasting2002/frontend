@@ -5,8 +5,8 @@
     <div class="text_roomjoin">加入房间</div>
     <Btn class="loading_enter" @click="join()" type="Enter" content="确认加入" />
 
-    <input class="name" :maxlength="10" type="text" placeholder="您的昵称" v-model="self.name" />
-    <input class="roomnumber" :maxlength="10" type="text" placeholder="房间号" v-model="Room.roomNumber" />
+    <input class="name" :maxlength="16" type="text" placeholder="您的昵称" v-model="self.name" />
+    <input class="roomnumber" :maxlength="16" type="text" placeholder="房间号" v-model="Room.roomNumber" />
     <input class="password" type="text" :maxlength="20" placeholder="房间密码(可选)" v-model="Room.password" />
   </div>
 </template>

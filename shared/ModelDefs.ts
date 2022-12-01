@@ -106,3 +106,9 @@ export type GameEvent = {
 	at: round;
 	deed: string;
 };
+
+export interface Message {
+	Avatar: Avatar;
+	name: string;
+	content: string;
+}
