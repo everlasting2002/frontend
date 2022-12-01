@@ -33,6 +33,18 @@ export function skipin() {
 	});
 }
 
+export function jump() {
+	gsap.to(".main-page", {
+	  opacity: 0,
+	  duration: 0.5,
+	  onComplete() {
+		router.push({
+		  name: "character",
+		});
+	  }
+	})
+  }
+
 export async function WSConnect() {
 	socket.connect();
 	socket.ws.onmessage = (msg: { data: any }) => {
