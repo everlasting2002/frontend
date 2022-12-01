@@ -29,13 +29,14 @@
 	import { start } from "../reactivity/startGame";
 	import { ref } from "vue";
 	import Rule from "../components/Rule.vue";
-	
+	import Clipboard from 'clipboard';
+
 	const number = Room.value.roomNumber;
 	const canBegin = computed(()=>players.value.length >= 5);
 	const refRule = ref<any>(null);
 	
 	function copyRoomNumber() {
-		navigator.clipboard.writeText(number);
+	Clipboard.copy(number);
 	};
 
 </script>
