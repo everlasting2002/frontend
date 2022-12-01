@@ -8,6 +8,7 @@ import { leaveRoom } from './leaveRoom';
 import { createRoom } from './createRoom';
 import { startGame } from './startGame';
 import { beginGame, endGame, refreshPlayers } from './play';
+import { recvMessage, sendMessagerecv } from './chat';
 import { gsap } from "gsap";
 
 export function skipin() {
@@ -53,13 +54,15 @@ export async function WSConnect() {
 			if (!Room.value.playing) getRoomStatus(recv.playerList);
 			else refreshPlayers(recv.playerList);
 		}
-		else if (recv.type === "createRoom") createRoom(recv);
-		else if (recv.type === "joinRoom") joinRoom(recv);
-		else if (recv.type === "leaveRoom") leaveRoom(recv);
-		else if (recv.type === "startGame") startGame(recv);
-		else if (recv.type === "beginGame") beginGame(recv);
-		else if (recv.type === "endGame") endGame(recv);
-		//else console.log(recv);
+		else if(recv.type==="createRoom")createRoom(recv);
+		else if(recv.type==="joinRoom")joinRoom(recv);
+		else if(recv.type==="leaveRoom")leaveRoom(recv);
+		else if(recv.type==="startGame")startGame(recv);
+		else if(recv.type==="beginGame")beginGame(recv);
+		else if(recv.type==="endGame")endGame(recv);
+		else if(recv.type==="playerTextMessage")sendMessagerecv(recv);
+		else if(recv.type==="textMessage")recvMessage(recv);
+		else console.log(recv);
 	};
 }
 

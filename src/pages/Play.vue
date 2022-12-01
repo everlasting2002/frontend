@@ -14,6 +14,7 @@
 				</div>
 			</div>
 		</div>
+		<ChatVue class="chat"></ChatVue>
 		<Assassinate :playerList="players" ref="refAssassinate"></Assassinate>
 		<img @click="refAssassinate.showAssassinate()" class="playroom-skill" v-if="self.character==='ASSASSIN'" src="../../public/assets/img/play/assassinate.png" />
 	</div>
@@ -26,6 +27,7 @@
 	import TasksVue from "../components/Tasks.vue";
 	import Assassinate from "../components/Assassinate.vue";
 	import { ref } from "vue";
+	import ChatVue from "../components/Chat.vue";
 	
 	const refAssassinate = ref<any>(null);
 
@@ -34,16 +36,24 @@
 <style lang="scss" scoped>
 	.playroom{
 		.playroom-playerlist{
-      position: absolute;
-      margin: 0;
-      top: calc(10/100*var(--height));
-      left: calc(10/100*var(--width));
-      right: 0;
-      width: calc(55/100*var(--width));
-      height: calc(50/100*var(--height));
-      text-align: center;
-      z-index: 2;
-    }
+			position: absolute;
+			margin: 0;
+			top: calc(10/100*var(--height));
+			left: calc(10/100*var(--width));
+			right: 0;
+			width: calc(55/100*var(--width));
+			height: calc(50/100*var(--height));
+			text-align: center;
+			z-index: 2;
+		}
+		.chat{
+			right: calc(1/100*var(--width));
+			top: calc(1/100*var(--height));
+			position: absolute;
+			width: calc(35/100*var(--width));
+			height: calc(45/100*var(--height));
+			z-index: 2;
+		}
 		.playroom-task{
 			top: calc(55/100*var(--height));
 			left: calc(20/100*var(--width));
@@ -77,7 +87,7 @@
 			right: calc(17/100*var(--width));
 			bottom: calc(10/100*var(--height));
 			z-index: 2;
-			border-radius: 10%/7%;
+			border-radius: calc(15/1000*var(--width));
 			overflow: hidden;
 			display: flex;
 			justify-content: center;

@@ -27,7 +27,7 @@
 		while(copyedList.length<5)copyedList.push(0)
 		return copyedList;
 	})
-	console.log(List);
+	//console.log(List);
 </script>
 
 <style lang="scss" scoped>
