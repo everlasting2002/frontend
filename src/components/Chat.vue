@@ -28,7 +28,6 @@
 	import { nextTick, ref, Ref, watch } from 'vue';
 	import { Messages, sendMessage } from '../reactivity/chat';
 	import { self } from '../reactivity/game';
-	//import $ from 'jquery';
 	
 	let sendText : Ref<string> = ref("");
 	
@@ -147,7 +146,6 @@
 			transition: 0.2s;
 			&:focus{
 				opacity: 1;
-				transition: 0.2s;
 			}
 		}
 	}

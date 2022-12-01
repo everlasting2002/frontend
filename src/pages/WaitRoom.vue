@@ -1,6 +1,5 @@
 <template>
 	<div class="waitroom">
-		<!-- <RoomPlayerList :playerList="playerList"></RoomPlayerList> -->
 		<div class="room-number-container">
 			<div>
 				<div @click="copyRoomNumber()">房间号：{{ number }}</div>
