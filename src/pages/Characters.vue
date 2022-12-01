@@ -1,13 +1,26 @@
 <template>
+<div class="main-page">
 	<!-- <Intro class="tmp" image_src="../public/assets/avatar/albedo.png" name="albedo" text="神奇的阿贝多"/> -->
 	<img :src="`/assets/img/characters_bg.png`" class="characters_bg" />
 	<Intros class="introductions" />
 	<Btn class="waitroom_btn_return" @click="$router.push('Home')" type="x" img="/assets/img/waitroom_btn_return.png" />
+</div>
 </template>
 
 <script setup lang="ts">
 import Btn from "../components/Btn.vue";
 import Intros from "../components/Intros.vue";
+import { gsap } from "gsap";
+import { onMounted } from "vue";
+
+onMounted(() => {
+	gsap.fromTo(".main-page", {
+		opacity: 0,
+	}, {
+		opacity: 1,
+		duration: 0.5,
+	});
+})
 </script>
 
 <style lang="scss" scoped>

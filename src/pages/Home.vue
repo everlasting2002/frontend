@@ -5,7 +5,7 @@
     <Btn class="homepage_button text_roomcreate" @click="refCreateRoom.showCreateRoom()" type="CreateRoom"
       content="创建房间" />
     <Btn class="homepage_button text_roomjoin" @click="refJoinRoom.showJoinRoom()" type="JoinRoom" content="加入房间" />
-    <Btn class="homepage_button text_introduction" @click="$router.push('character')" type="Introduction"
+    <Btn class="homepage_button text_introduction" @click="jump" type="Introduction"
       content="角色介绍" />
     <Btn class="homepage_button text_recording" @click="$router.push('')" type="Recording" content="游戏记录" />
     <CreateRoom ref="refCreateRoom" />
@@ -20,7 +20,8 @@ import Btn from "../components/Btn.vue";
 import CreateRoom from "../components/CreateRoom.vue";
 import JoinRoom from "../components/JoinRoom.vue";
 import { onMounted } from "vue";
-import { skipin } from '../reactivity/room';
+import { skipin, jump } from '../reactivity/room';
+import router from "../router";
 
 const refCreateRoom = ref<any>(null);
 const refJoinRoom = ref<any>(null);
