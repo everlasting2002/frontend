@@ -32,10 +32,6 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-@font-face {
-  font-family: genshin;
-  src: url("../../public/assets/zh-cn.ttf");
-}
 
 .main-page {
   width: 100%;

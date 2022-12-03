@@ -16,7 +16,7 @@
 		</div>
 		<ChatVue class="chat"></ChatVue>
 		<Assassinate :playerList="players" ref="refAssassinate"></Assassinate>
-		<img @click="refAssassinate.showAssassinate()" class="playroom-skill" v-if="self.character==='ASSASSIN'" src="../../public/assets/img/play/assassinate.png" />
+		<img @click="refAssassinate.showAssassinate()" class="playroom-skill" v-if="self.character==='ASSASSIN'" src="/assets/img/play/assassinate.png" />
 	</div>
 </template>
 

@@ -1,9 +1,9 @@
 <template>
   <div class="dialog-content" v-show="dialogType!==0">
-    <img src="../../public/assets/img/corner.png" class="change-avatar_corner change-avatar_corner-tl" />
-    <img src="../../public/assets/img/corner.png" class="change-avatar_corner change-avatar_corner-tr" />
-    <img src="../../public/assets/img/corner.png" class="change-avatar_corner change-avatar_corner-bl" />
-    <img src="../../public/assets/img/corner.png" class="change-avatar_corner change-avatar_corner-br" />
+    <img src="/assets/img/corner.png" class="change-avatar_corner change-avatar_corner-tl" />
+    <img src="/assets/img/corner.png" class="change-avatar_corner change-avatar_corner-tr" />
+    <img src="/assets/img/corner.png" class="change-avatar_corner change-avatar_corner-bl" />
+    <img src="/assets/img/corner.png" class="change-avatar_corner change-avatar_corner-br" />
     <span
       class="content"
       v-html="content && content.content"

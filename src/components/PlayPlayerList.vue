@@ -11,7 +11,7 @@
         <div class="name">{{item.name}}</div>
       </div>
       <div v-else>
-        <img src="../../public/assets/img/play/avatar.svg" class="avatar"/>
+        <img src="/assets/img/play/avatar.svg" class="avatar"/>
         <div class="name">{{item.name}}</div>
       </div>
     </div>
