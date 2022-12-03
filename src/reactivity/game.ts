@@ -50,6 +50,3 @@ export const gameStatusTimeLeft = ref(
 /**
  * 获得最新的游戏信息
  */
-export async function refresh() {
-  
-}
