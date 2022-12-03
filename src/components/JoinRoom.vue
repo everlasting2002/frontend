@@ -1,7 +1,7 @@
 <template>
   <div class="joinroom" v-show="show">
-    <img :src="`/assets/img/createroom_bg.png`" alt="createroom_bg" class="createroom_bg" />
-    <Btn class="createroom_x" @click="hileJoinRoom" type="x" img="/assets/img/createroom_x.png" />
+    <img :src="`/assets/img/joinroom_bg.png`" alt="createroom_bg" class="createroom_bg" />
+    <Btn class="createroom_x" @click="hideJoinRoom" type="x" img="/assets/img/createroom_x.png" />
     <div class="text_roomjoin">加入房间</div>
     <Btn class="loading_enter" @click="join()" type="Enter" content="确认加入" />
 
@@ -35,7 +35,7 @@ const showJoinRoom = () => {
   });
 }
 
-const hileJoinRoom = () => {
+const hideJoinRoom = () => {
   gsap.fromTo(".joinroom", {
     opacity: 1,
     scale: 1,

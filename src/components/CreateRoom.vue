@@ -1,7 +1,7 @@
 <template>
   <div class="createroom" v-show="show">
     <img :src="`/assets/img/createroom_bg.png`" alt="createroom_bg" class="createroom_bg" />
-    <Btn class="createroom_x" @click="hileCreateRoom" type="x" img="/assets/img/createroom_x.png" />
+    <Btn class="createroom_x" @click="hideCreateRoom" type="x" img="/assets/img/createroom_x.png" />
     <div class="text_roomcreate">创建房间</div>
     <Btn class="loading_enter" @click="create()" type="Enter" content="确认创建" />
 
@@ -35,7 +35,7 @@ const showCreateRoom = () => {
   });
 }
 
-const hileCreateRoom = () => {
+const hideCreateRoom = () => {
   gsap.fromTo(".createroom", {
     opacity: 1,
     scale: 1,
@@ -113,7 +113,7 @@ defineExpose({ showCreateRoom })
     position: absolute;
     opacity: 0.5;
     left: calc(72/100*var(--height));
-    top: calc(30/100*var(--height));
+    top: calc(35/100*var(--height));
     font-size: calc(40/1000*var(--height));
     letter-spacing: calc(3/1000*var(--height));
     color: #B3A894;
@@ -124,7 +124,7 @@ defineExpose({ showCreateRoom })
     position: absolute;
     opacity: 0.5;
     left: calc(72/100*var(--height));
-    top: calc(427/1000*var(--height));
+    top: calc(51/100*var(--height));
     font-size: calc(40/1000*var(--height));
     letter-spacing: calc(3/1000*var(--height));
     color: #B3A894;
