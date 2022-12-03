@@ -12,13 +12,13 @@
 					<div class="name">{{item.name}}</div>
 				</div>
 				<div v-else>
-					<img src="../../public/assets/img/play/avatar.svg" class="noavatar"/>
+					<img src="/assets/img/play/avatar.svg" class="noavatar"/>
 					<div class="name">{{item.name}}</div>
 				</div>
 			</div>
 		</div>
     <div class="assassinate-background"></div>
-		<img @click="show=false" class="assassinate-skill" v-if="self.character==='ASSASSIN'" src="../../public/assets/img/play/assassinate.png" />
+		<img @click="show=false" class="assassinate-skill" v-if="self.character==='ASSASSIN'" src="/assets/img/play/assassinate.png" />
   </div>
 </template>
 
