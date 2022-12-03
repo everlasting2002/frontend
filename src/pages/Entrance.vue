@@ -15,7 +15,8 @@
 
     <img :src="`/assets/img/pm.png`" alt="logo" class="logo" />
     <div class="title">虚空劫灰往世书</div>
-    <Btn class="loading_enter" @click="skip" type="Enter" content="点击进入" />
+    <Btn v-show="(loaded===true)" class="loading_enter" @click="skip" type="Enter" content="点击进入" />
+    <div v-show="(loaded===false)" class="loading_percent">{{percent}}%</div>
   </div>
 
 </template>
@@ -23,14 +24,54 @@
 <script setup lang="ts">
 import Btn from "../components/Btn.vue";
 import { floating_pgy, skip } from "../reactivity/entrance";
-import { onMounted } from "vue";
+import { onMounted, Ref, ref } from "vue";
+
 onMounted(() => {
   floating_pgy();
-})
+});
+
+const loaded : Ref<boolean> = ref(false);
+const percent : Ref<number> = ref(0);
+
+const imgModule = import.meta.glob('../../public/assets/**/*.{png,svg,gif,jpg}',{as:'url'});
+//console.log(img);
+const imgUrl : string[] = [];
+Object.keys(imgModule).forEach(item =>{
+  imgUrl.push(item);
+});
+const imgNum = imgUrl.length;
+let loadedNum = 0;
+
+for(let item of imgUrl){
+  let img = new Image();
+  img.src = item;
+  img.onload = function(){
+    loadedNum++;
+    percent.value=Math.floor((loadedNum/imgNum)*100);
+    if(loadedNum===imgNum){
+      loaded.value=true;
+    }
+  }
+}
+
 </script>
 
 <style lang="scss" scoped>
 .main-page {
+  .loading_percent{
+    position: absolute;
+    left: 0;
+    right: 0;
+    opacity: 0.7;
+    height: 2em;
+    top: calc((2/3*var(--height)));
+    width: calc((40/100*var(--height)));
+    font-size: calc((4/100*var(--height)));
+    color: #746257;
+    margin: auto;
+    text-align: center;
+    z-index: 4;
+  }
   .loading_bg_puzzle {
     z-index: 1;
     position: absolute;
@@ -159,8 +200,8 @@ onMounted(() => {
     opacity: 0.7;
     height: 2em;
     top: calc((2/3*var(--height)));
-    width: calc((2/3*var(--height)));
-    font-size: calc((1/13*var(--height)));
+    width: calc((40/100*var(--height)));
+    font-size: calc((5/100*var(--height)));
     color: #997A6A;
     margin: auto;
     text-align: center;
