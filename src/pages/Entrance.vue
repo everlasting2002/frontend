@@ -33,7 +33,7 @@ onMounted(() => {
 const loaded : Ref<boolean> = ref(false);
 const percent : Ref<number> = ref(0);
 const imgModule = import.meta.glob('../../assets/**/*.{png,svg,gif,jpg}',{as:'url'});
-console.log(imgModule);
+//console.log(imgModule);
 const imgUrl : string[] = [];
 Object.keys(imgModule).forEach(item =>{
   imgUrl.push(item);
