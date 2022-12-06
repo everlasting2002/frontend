@@ -54,7 +54,7 @@ defineExpose({ showRule })
   justify-content: space-between;
   align-items: center;
   word-break: break-word;
-  background-image: url("../../public/assets/img/ruler/ruler_border.png");
+  background-image: url("/assets/img/ruler/ruler_border.png");
   background-size: 100% 100%;
   z-index: 9999;
   position: fixed;

@@ -1,20 +1,22 @@
 <template>
   <div id="main-page" ref="flexible_fullscreen" class="main-page">
-    <img :src="`/assets/img/loading_bg_puzzle.png`" alt="loading_bg_puzzle" class="loading_bg_puzzle" />
-    <img :src="`/assets/img/loading_bg_di2.png`" alt="loading_bg_di2" class="loading_bg_di2" />
-    <img :src="`/assets/img/loading_pgy2.png`" alt="loading_pgy2" class="loading_pgy2" />
-    <img :src="`/assets/img/loading_pgy3.png`" alt="loading_pgy3" class="loading_pgy3" />
-    <img :src="`/assets/img/loading_pgy3.png`" alt="loading_pgy3_1" class="loading_pgy3_1" />
-    <img :src="`/assets/img/loading_pgy4.png`" alt="loading_pgy4" class="loading_pgy4" />
+      <img :src="`/assets/img/loading_bg_puzzle.png`" alt="loading_bg_puzzle" class="loading_bg_puzzle" />
+      <img :src="`/assets/img/loading_bg_di2.png`" alt="loading_bg_di2" class="loading_bg_di2" />
+    <div v-show="pgy_show">
+      <img :src="`/assets/img/loading_pgy2.png`" alt="loading_pgy2" class="loading_pgy2" />
+      <img :src="`/assets/img/loading_pgy3.png`" alt="loading_pgy3" class="loading_pgy3" />
+      <img :src="`/assets/img/loading_pgy3.png`" alt="loading_pgy3_1" class="loading_pgy3_1" />
+      <img :src="`/assets/img/loading_pgy4.png`" alt="loading_pgy4" class="loading_pgy4" />
 
-    <img :src="`/assets/img/minipgy/loading_minipgy.png`" alt="loading_minipgy" class="loading_minipgy" />
-    <img :src="`/assets/img/minipgy/loading_minipgyball.png`" alt="loading_minipgyball" class="loading_minipgyball" />
-    <img :src="`/assets/img/minipgy/ball_2.png`" alt="ball_2" class="ball_2" />
-    <img :src="`/assets/img/minipgy/mini_2.png`" alt="mini_2" class="mini_2" />
-    <img :src="`/assets/img/minipgy/ball_2.png`" alt="ball_3" class="ball_3" />
+      <img :src="`/assets/img/minipgy/loading_minipgy.png`" alt="loading_minipgy" class="loading_minipgy" />
+      <img :src="`/assets/img/minipgy/loading_minipgyball.png`" alt="loading_minipgyball" class="loading_minipgyball" />
+      <img :src="`/assets/img/minipgy/ball_2.png`" alt="ball_2" class="ball_2" />
+      <img :src="`/assets/img/minipgy/mini_2.png`" alt="mini_2" class="mini_2" />
+      <img :src="`/assets/img/minipgy/ball_2.png`" alt="ball_3" class="ball_3" />
+    </div>
 
-    <img :src="`/assets/img/pm.png`" alt="logo" class="logo" />
-    <div class="title">虚空劫灰往世书</div>
+    <img :src="pmUrl" id="pmgif" alt="logo" class="logo" v-show="pm_show"/>
+    <div class="title" v-show="!pm_show">虚空劫灰往世书</div>
     <Btn v-show="(loaded===true)" class="loading_enter" @click="skip" type="Enter" content="点击进入" />
     <div v-show="(loaded===false)" class="loading_percent">{{percent}}%</div>
   </div>
@@ -24,17 +26,74 @@
 <script setup lang="ts">
 import Btn from "../components/Btn.vue";
 import { floating_pgy, skip } from "../reactivity/entrance";
-import { onMounted, Ref, ref } from "vue";
+import { onMounted, Ref, ref, watch } from "vue";
+import { gsap } from "gsap";
 
-onMounted(() => {
-  floating_pgy();
-});
-
-const loaded : Ref<boolean> = ref(false);
 const percent : Ref<number> = ref(0);
+const loaded : Ref<boolean> = ref(false);
+var pm_show : Ref<boolean> = ref(true);
+var pgy_show : Ref<boolean> = ref(false);
+var pmUrl : Ref<string> = ref("/assets/img/pm1.gif");
+var preimgUrl : string[] = [
+  "/assets/img/loading_bg_puzzle.png",
+  "/assets/img/loading_bg_di2.png",
+  "/assets/img/pm1.gif",
+  "/assets/img/pm2.gif",
+  "/assets/img/pm3.gif",
+];
+let preloadedNum = 0;
+for(let item of preimgUrl){
+  let img = new Image();
+  img.src = item;
+  img.onload = function(){
+    preloadedNum++;
+    if(preloadedNum == 5){
+      pm_show.value = true;
+      setTimeout(() => {
+        pmUrl.value = "/assets/img/pm2.gif";
+      }, 1200);
+    }
+  }
+}
 
-const imgModule = import.meta.glob('../../public/assets/**/*.{png,svg,gif,jpg}',{as:'url'});
-//console.log(img);
+var pgyimgUrl : string[] = [
+  "/assets/img/loading_pgy2.png",
+  "/assets/img/loading_pgy3.png",
+  "/assets/img/loading_pgy4.png",
+  "/assets/img/minipgy/loading_minipgy.png",
+  "/assets/img/minipgy/loading_minipgyball.png",
+  "/assets/img/minipgy/ball_2.png",
+  "/assets/img/minipgy/mini_2.png",
+  "/assets/img/minipgy/ball_2.png",
+];
+
+let pgyloadedNum = 0;
+let pgyNum = pgyimgUrl.length;
+for(let item of pgyimgUrl){
+  let img = new Image();
+  img.src = item;
+  img.onload = function(){
+    pgyloadedNum++;
+    if(pgyloadedNum == pgyNum){
+      pgy_show.value = true;
+      floating_pgy();
+    }
+  }
+}
+
+setTimeout(() => {
+  pmUrl.value = "/assets/img/pm2.gif";
+}, 1200);
+
+watch(loaded, (newloaded) => {
+  pmUrl.value = "/assets/img/pm3.gif";
+  setTimeout(() => {
+    pm_show.value = false;
+  }, 840);
+})
+
+const imgModule = import.meta.glob('../../assets/**/*.{png,svg,gif,jpg}',{as:'url'});
+//console.log(imgModule);
 const imgUrl : string[] = [];
 Object.keys(imgModule).forEach(item =>{
   imgUrl.push(item);
@@ -49,10 +108,26 @@ for(let item of imgUrl){
     loadedNum++;
     percent.value=Math.floor((loadedNum/imgNum)*100);
     if(loadedNum===imgNum){
-      loaded.value=true;
+      pmUrl.value = "/assets/img/pm3.gif";
+      setTimeout(() => {
+        pm_show.value = false;
+        loaded.value=true;
+        gsap.fromTo(".title", {
+          opacity: 0.7,
+          scale: 0.9,
+        }, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.5,
+        })
+      }, 840);
     }
   }
 }
+
+onMounted(() => {
+  floating_pgy();
+});
 
 </script>
 
@@ -174,7 +249,7 @@ for(let item of imgUrl){
     right: 0;
     text-align: center;
     width: calc(1/5*var(--width));
-    top: calc((1/4*var(--height)) / 2);
+    top: calc((45/100*var(--height)) / 2);
     z-index: 4;
   }
 
@@ -184,7 +259,7 @@ for(let item of imgUrl){
     left: 0;
     right: 0;
     text-align: center;
-    top: calc((48/100*var(--height)));
+    top: calc((40/100*var(--height)));
     font-size: calc((1/5*var(--height)) / 2);
     font-weight: bolder;
     letter-spacing: calc((1/35*var(--height)) / 2);

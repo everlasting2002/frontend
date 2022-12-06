@@ -5,9 +5,9 @@
 			:key="item"
 			class="task"
 		>
-			<img v-if="item===0" src="../../public/assets/img/play/waitcomplete.svg" class="task-img"/>
-			<img v-if="item===1" src="../../public/assets/img/play/success.png" class="task-img"/>
-			<img v-if="item===2" src="../../public/assets/img/play/fail.png" class="task-img"/>
+			<img v-if="item===0" src="/assets/img/play/waitcomplete.svg" class="task-img"/>
+			<img v-if="item===1" src="/assets/img/play/success.png" class="task-img"/>
+			<img v-if="item===2" src="/assets/img/play/fail.png" class="task-img"/>
 		</div>
 	</div>
 </template>

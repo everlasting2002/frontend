@@ -2,7 +2,7 @@
 	<div class="change-avatar" v-show="show">
 		<div class="change-avatar-card">
 			<div class="change-avatar-header">
-				<img src="../../public/assets/img/changeAvatar/close.png" class="change-avatar-close" @click="hideRule" />
+				<img src="/assets/img/changeAvatar/close.png" class="change-avatar-close" @click="hideRule" />
 				<p>更换头像</p>
 			</div>
 			<div class="Avatars">
@@ -10,10 +10,10 @@
 					<AvatarVue :character="item" @click="() => { changeAvatar(item as Avatar); show = false; }"></AvatarVue>
 				</div>
 			</div>
-			<img src="../../public/assets/img/corner.png" class="change-avatar_corner change-avatar_corner-tl" />
-			<img src="../../public/assets/img/corner.png" class="change-avatar_corner change-avatar_corner-tr" />
-			<img src="../../public/assets/img/corner.png" class="change-avatar_corner change-avatar_corner-bl" />
-			<img src="../../public/assets/img/corner.png" class="change-avatar_corner change-avatar_corner-br" />
+			<img src="/assets/img/corner.png" class="change-avatar_corner change-avatar_corner-tl" />
+			<img src="/assets/img/corner.png" class="change-avatar_corner change-avatar_corner-tr" />
+			<img src="/assets/img/corner.png" class="change-avatar_corner change-avatar_corner-bl" />
+			<img src="/assets/img/corner.png" class="change-avatar_corner change-avatar_corner-br" />
 		</div>
 		<div class="change-avatar-background"></div>
 	</div>
