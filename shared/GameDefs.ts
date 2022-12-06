@@ -14,28 +14,30 @@ export type Character =
 	| "";
 
 export const ChineseNames: Record<Character, string> = {
-	MERLIN: "草神",
-	PERCIVAL: "旅行者",
-	ASSASSIN: "博士",
-	MORDRED: "散兵",
-	OBERON: "拉赫曼",
-	MORGANA: "赤王",
-	LOYALIST: "森林的子民",
-	MINIONS: "沙漠的子民",
-	FAIRY: "兰纳罗",
+	MERLIN: "七叶寂照秘密主",
+	PERCIVAL: "博士",
+	ASSASSIN: "旅行者",
+	MORDRED: "艾尔海森",
+	OBERON: "提纳里",
+	MORGANA: "小吉祥草王",
+	LOYALIST: "教令院",
+	MINIONS: "赛诺",
+	FAIRY: "虚空",
 	"": "",
 };
 
+const GOOD = "教令院阵营" , BAD = "旅行者一行人";
+
 export const CharacterIntro: Record<Character, string> = {
-	MERLIN: "你可以看到所有坏那菈。",
-	PERCIVAL: "你可以看到【"+ChineseNames.MERLIN+"】和【"+ChineseNames.MORGANA+"】，但是不知道两个玩家的具体身份。",
-	ASSASSIN: "你随时可以进行刺杀。如果成功刺杀了【"+ChineseNames.MERLIN+"】，那么坏那菈获得胜利，否则好那菈获得胜利。",
-	MORDRED: "【"+ChineseNames.MERLIN+"】看不到你。",
-	OBERON: "你无法看到其他坏那菈，其他坏那菈也看不到你。",
-	MORGANA: "你需要假扮成【"+ChineseNames.MERLIN+"】，迷惑【"+ChineseNames.PERCIVAL+"】。",
-	LOYALIST: "好那菈",
-	MINIONS: "坏那菈",
-	FAIRY: "在第2、3、4轮任务结束后，【"+ChineseNames.FAIRY+"】可以把一位玩家的身份悄悄告诉你，随后【"+ChineseNames.FAIRY+"】被查验的玩家拥有。",
+	MERLIN: `你可以看到所有${BAD}。`,
+	PERCIVAL: `你可以看到【${ChineseNames.MERLIN}】和【${ChineseNames.MORGANA}】，但是不知道两个玩家的具体身份。`,
+	ASSASSIN: `你随时可以进行刺杀。如果成功刺杀了【${ChineseNames.MERLIN}】，那么${BAD}获得胜利，否则${GOOD}获得胜利。`,
+	MORDRED: `【${ChineseNames.MERLIN}】看不到你。`,
+	OBERON: `你无法看到其他${BAD}，其他${BAD}也看不到你。`,
+	MORGANA: `你需要假扮成【${ChineseNames.MERLIN}】，迷惑【${ChineseNames.PERCIVAL}】。`,
+	LOYALIST: `${GOOD}`,
+	MINIONS: `${BAD}`,
+	FAIRY: `在第2、3、4轮任务结束后，【${ChineseNames.FAIRY}】可以把一位玩家的身份悄悄告诉你，随后【${ChineseNames.FAIRY}】被查验的玩家拥有。`,
 	"": "",
 };
 
