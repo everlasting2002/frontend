@@ -22,9 +22,9 @@
 		<div class="test-buttons" v-if="isDev">
 			<p>本地调试用（不用注释）</p>
 			<GenshinBtnVue class="test-button" content="设为队长" @click="self.leader=true;" theme="dark" type="o"></GenshinBtnVue>
-			<GenshinBtnVue class="test-button" content="取消队长" @click="self.leader=false;" theme="dark" type="o"></GenshinBtnVue>
+			<GenshinBtnVue class="test-button" content="取消队长" @click="self.leader=false;" theme="dark" type="x"></GenshinBtnVue>
 			<GenshinBtnVue class="test-button" content="开始队伍投票" @click="Room.isVoting=true;" theme="dark" type="o"></GenshinBtnVue>
-			<GenshinBtnVue class="test-button" content="结束队伍投票" @click="Room.isVoting=false;" theme="dark" type="o"></GenshinBtnVue>
+			<GenshinBtnVue class="test-button" content="结束队伍投票" @click="Room.isVoting=false;" theme="dark" type="x"></GenshinBtnVue>
 		</div>
 		<ChatVue class="chat"></ChatVue>
 		<Assassinate :playerList="players" ref="refAssassinate"></Assassinate>
