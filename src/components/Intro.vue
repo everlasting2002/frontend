@@ -40,17 +40,20 @@ const text = computed(
     .image {
         height: 60%;
         margin-bottom: 10%;
+        display: flex;
+        overflow: hidden;
+        justify-content: center;
 
         .ima {
-            height: auto;
-            width: 100%;
-            position: absolute;
+            height: 100%;
+            width: auto;
+            position: relative;
         }
 
         .border {
             height: auto;
             width: 100%;
-            position: relative;
+            position: absolute;
         }
     }
     .name {
