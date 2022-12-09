@@ -5,6 +5,7 @@
       :src="`/assets/avatar/${character.toLowerCase()}.png`"
       :alt="name"
     />
+    <slot></slot>
   </div>
 </template>
 
@@ -27,7 +28,10 @@
   .avatar {
     display: inline-block;
     position: relative;
-
+    .slot{
+      height: 100%;
+      width: 100%;
+    }
     .icon {
       width: 100%;
       border-radius: 50%;

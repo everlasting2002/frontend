@@ -1,5 +1,5 @@
 import { players } from './game';
-import { MessageReceive, MessageResponse } from './../../shared/WSMsg';
+import { MessageReceive, resultResponse } from './../../shared/WSMsg';
 import { Message } from './../../shared/ModelDefs';
 import { Ref, ref } from 'vue';
 import { socket } from './../socket/index';
@@ -17,7 +17,7 @@ export function sendMessage(str : string){
 	});
 }
 
-export function sendMessagerecv(res : MessageResponse){
+export function sendMessagerecv(res : resultResponse){
 	if(res.result==="fail"){
 		Messages.value.push({
 			Avatar: "",

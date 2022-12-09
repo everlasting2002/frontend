@@ -1,4 +1,4 @@
-import { StartGameResponse } from './../../shared/WSMsg';
+import { resultResponse } from './../../shared/WSMsg';
 import { socket } from './../socket/index';
 
 import router from "../router";
@@ -10,7 +10,7 @@ export async function start(){
 	});
 }
 
-export function startGame(res : StartGameResponse){
+export function startGame(res : resultResponse){
 	if(res.result=="fail"){
 		return showDialog(res.reason);
 	}

@@ -8,19 +8,14 @@ export type CreateRoomResponse = {
 	reason: string,
 };
 
+export type resultResponse = {
+	result: "success"|"fail",
+	reason: string,
+};
+
 export type JoinRoomResponse = {
 	result: "success"|"fail",
 	ID: number,
-	reason: string,
-};
-
-export type LeaveRoomResponse = {
-	result: "success"|"fail",
-	reason: string,
-};
-
-export type StartGameResponse = {
-	result: "success"|"fail",
 	reason: string,
 };
 
@@ -35,12 +30,34 @@ export type EndGameResponse = {
 	roleList: [],
 };
 
-export type MessageResponse = {
-	result: "success"|"fail",
-	reason: string,
-};
-
 export type MessageReceive = {
 	ID: index,
 	message: string,
 };
+
+export type setLeaderReceive = {
+	ID: index,
+};
+
+export type roleHintReceive = {
+	HintList: [{
+		ID: index,
+		HintType: "GOOD"|"BAD"|"MERLIN_OR_MORGANA"|"ASSASSIN"|"MORDRED"|"MORGANA"|"MINIONS"|"",
+	}],
+};
+
+export type selectTeamReceive = {
+	team: index[],
+}
+
+export type voteTeamProgressReceive = {
+	voted: index[],
+}
+
+export type voteTeamReceive = {
+	voteResult: boolean,
+	voteList: [{
+		ID: index,
+		vote: boolean,
+	}],
+}

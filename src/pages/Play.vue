@@ -2,7 +2,7 @@
 	<div class="playroom">
 		
 		<img :src="`/assets/img/play/play_bg.png`" class="playroom_bg"/>
-		<PlayPlayerList class="playroom-playerlist" :playerList="players"></PlayPlayerList>
+		<PlayPlayerList class="playroom-playerlist" ></PlayPlayerList>
 		<TasksVue class="playroom-task" :taskList="Room.taskResult"></TasksVue>
 		<div class="playroom-character-card">
 			<img class="playroom-character" :src="`/assets/tachie/${self.character.toLowerCase()}.png`"/>
@@ -14,6 +14,18 @@
 				</div>
 			</div>
 		</div>
+		<div v-if="(Room.isVoting)" class="playroom-vote">
+			<GenshinBtnVue class="playroom-vote-button" @click="voteTeam(true)" content="投票同意" theme="light" type="o"></GenshinBtnVue>
+			<GenshinBtnVue class="playroom-vote-button" @click="voteTeam(false)" content="投票反对" theme="light" type="x"></GenshinBtnVue>
+		</div>
+		<GenshinBtnVue v-if="self.leader" class="playroom-confirm-team" @click="confirmTeam()" content="确认组队方案" theme="light" type="o"></GenshinBtnVue>
+		<div class="test-buttons" v-if="isDev">
+			<p>本地调试用（不用注释）</p>
+			<GenshinBtnVue class="test-button" content="设为队长" @click="self.leader=true;" theme="dark" type="o"></GenshinBtnVue>
+			<GenshinBtnVue class="test-button" content="取消队长" @click="self.leader=false;" theme="dark" type="o"></GenshinBtnVue>
+			<GenshinBtnVue class="test-button" content="开始队伍投票" @click="Room.isVoting=true;" theme="dark" type="o"></GenshinBtnVue>
+			<GenshinBtnVue class="test-button" content="结束队伍投票" @click="Room.isVoting=false;" theme="dark" type="o"></GenshinBtnVue>
+		</div>
 		<ChatVue class="chat"></ChatVue>
 		<Assassinate :playerList="players" ref="refAssassinate"></Assassinate>
 		<img @click="refAssassinate.showAssassinate()" class="playroom-skill" v-if="self.character==='ASSASSIN'" src="/assets/img/play/assassinate.png" />
@@ -21,24 +33,82 @@
 </template>
 
 <script setup lang="ts">
-	import { players,self,Room } from "../reactivity/game";
-	import { CharacterIntro, ChineseNames } from "../../shared/GameDefs";
-	import PlayPlayerList from "../components/PlayPlayerList.vue";
-	import TasksVue from "../components/Tasks.vue";
-	import Assassinate from "../components/Assassinate.vue";
-	import { ref } from "vue";
-	import ChatVue from "../components/Chat.vue";
-	
-	const refAssassinate = ref<any>(null);
+import { players,self,Room } from "../reactivity/game";
+import { CharacterIntro, ChineseNames } from "../../shared/GameDefs";
+import PlayPlayerList from "../components/PlayPlayerList.vue";
+import TasksVue from "../components/Tasks.vue";
+import Assassinate from "../components/Assassinate.vue";
+import { ref } from "vue";
+import ChatVue from "../components/Chat.vue";
+import GenshinBtnVue from "../components/GenshinBtn.vue";
+import { socket } from "../socket";
+import Btn from "../components/Btn.vue";
 
+const refAssassinate = ref<any>(null);
+let isDev = import.meta.env.DEV ? true : false;
+
+function voteTeam(res : boolean){
+	socket.send({
+		type: "playerVoteTeam",
+		vote: res,
+	});
+}
+
+function confirmTeam(){
+	socket.send({
+		type: "playerConfirmTeam",
+	});
+}
 </script>
 
 <style lang="scss" scoped>
 	.playroom{
+		.playroom-confirm-team{
+			left: calc(30/100*var(--width));
+			bottom: calc(10/100*var(--height));
+			position: absolute;
+			width: calc(20/100*var(--width));
+			height: calc(6/100*var(--height));
+			z-index: 2;
+		}
+		.playroom-vote{
+			left: calc(20/100*var(--width));
+			bottom: calc(20/100*var(--height));
+			position: absolute;
+			width: calc(40/100*var(--width));
+			height: calc(6/100*var(--height));
+			z-index: 2;
+			display: flex;
+			flex-wrap: nowrap;
+			justify-content: space-between;
+			.playroom-vote-button{
+				position: relative;
+				width: 40%;
+				height: 100%;
+				display: block;
+			}
+		}
+		.test-buttons{
+			.test-button{
+				position: relative;
+				width: 100%;
+				height: 20%;
+				display: block;
+			}
+			right: calc(1/100*var(--width));
+			top: calc(50/100*var(--height));
+			position: absolute;
+			width: calc(15/100*var(--width));
+			height: calc(20/100*var(--height));
+			z-index: 2;
+			display: flex;
+			flex-wrap: wrap;
+			align-content: space-around;
+		}
 		.playroom-playerlist{
 			position: absolute;
 			margin: 0;
-			top: calc(10/100*var(--height));
+			top: calc(6/100*var(--height));
 			left: calc(10/100*var(--width));
 			right: 0;
 			width: calc(55/100*var(--width));

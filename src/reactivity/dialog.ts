@@ -7,9 +7,10 @@ export const content = computed(() =>
 );
 
 /**
- * 展示一个出现 showTime 秒数(默认5s) 的弹窗
+ * 展示一个弹窗
  * @param toShowContent 显示的文字(支持 html)
- * @param showTime 显示的秒数
+ * @param showType 弹窗的类型，1确认，2确认/取消
+ * @param Func 类型为2时，点击确认执行的函数
  */
 export function showDialog(
   toShowContent: string,
