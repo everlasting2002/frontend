@@ -14,28 +14,30 @@ export type Character =
 	| "";
 
 export const ChineseNames: Record<Character, string> = {
-	MERLIN: "草神",
-	PERCIVAL: "旅行者",
-	ASSASSIN: "博士",
-	MORDRED: "散兵",
-	OBERON: "拉赫曼",
-	MORGANA: "赤王",
-	LOYALIST: "森林的子民",
-	MINIONS: "沙漠的子民",
-	FAIRY: "兰纳罗",
+	MERLIN: "七叶寂照秘密主",
+	PERCIVAL: "博士",
+	ASSASSIN: "旅行者",
+	MORDRED: "艾尔海森",
+	OBERON: "提纳里",
+	MORGANA: "小吉祥草王",
+	LOYALIST: "贤者",
+	MINIONS: "赛诺",
+	FAIRY: "虚空",
 	"": "",
 };
 
+export const GOOD = "教令院阵营" , BAD = "旅行者阵营";
+
 export const CharacterIntro: Record<Character, string> = {
-	MERLIN: "你可以看到所有坏那菈。",
-	PERCIVAL: "你可以看到【"+ChineseNames.MERLIN+"】和【"+ChineseNames.MORGANA+"】，但是不知道两个玩家的具体身份。",
-	ASSASSIN: "你随时可以进行刺杀。如果成功刺杀了【"+ChineseNames.MERLIN+"】，那么坏那菈获得胜利，否则好那菈获得胜利。",
-	MORDRED: "【"+ChineseNames.MERLIN+"】看不到你。",
-	OBERON: "你无法看到其他坏那菈，其他坏那菈也看不到你。",
-	MORGANA: "你需要假扮成【"+ChineseNames.MERLIN+"】，迷惑【"+ChineseNames.PERCIVAL+"】。",
-	LOYALIST: "好那菈",
-	MINIONS: "坏那菈",
-	FAIRY: "在第2、3、4轮任务结束后，【"+ChineseNames.FAIRY+"】可以把一位玩家的身份悄悄告诉你，随后【"+ChineseNames.FAIRY+"】被查验的玩家拥有。",
+	MERLIN: `作为全知的【${ChineseNames.MERLIN}】，【${ChineseNames.MERLIN}】洞悉【${ChineseNames.MORGANA}】的目的。【${ChineseNames.MERLIN}】可以看到所有人的阵营。但【${ChineseNames.MORDRED}】是个例外，在散兵眼里，【${ChineseNames.MORDRED}】仍属于【${GOOD}】。`,
+	PERCIVAL: `【${ChineseNames.PERCIVAL}】是造神计划的核心人物。【${ChineseNames.PERCIVAL}】可以看到场上有两个【神】。一个是【${ChineseNames.MORGANA}】，另一个则是【${ChineseNames.MERLIN}】。【${ChineseNames.PERCIVAL}】只知道谁是神，但不能肯定两个神分别是谁。`,
+	ASSASSIN: `找到【${ChineseNames.MERLIN}】，然后战胜他阻止造神计划是【${ChineseNames.ASSASSIN}】的终极任务。出手机会只有一次，请务必谨慎！`,
+	MORDRED: `在【${GOOD}】看来，【${ChineseNames.MORDRED}】仍然是他们的人，因此【${ChineseNames.MERLIN}】仍认为你属于【${GOOD}】。`,
+	OBERON: `【${ChineseNames.OBERON}】的目标也是拯救神明。但身处化城郭的【${ChineseNames.OBERON}】并不知道其他人的阵营，其他人也不知道【${ChineseNames.OBERON}】的阵营，但全知的【${ChineseNames.MERLIN}】知道。`,
+	MORGANA: `作为神，【${ChineseNames.MORGANA}】巧妙地混淆了【${ChineseNames.PERCIVAL}】的认识。【${ChineseNames.PERCIVAL}】会看到两个神，但无法得知谁是【${ChineseNames.MERLIN}】。`,
+	LOYALIST: `参与造神计划的【${GOOD}】的【${ChineseNames.LOYALIST}】。不知道任何人的阵营，胜利目标是造神成功。`,
+	MINIONS: `【${ChineseNames.MINIONS}】的胜利目标是阻止【${GOOD}】的造神计划，拯救神明。`,
+	FAIRY: `在第2、3、4轮任务结束后，拥有【${ChineseNames.FAIRY}】的人可以直接读取一位玩家的身份，随后【${ChineseNames.FAIRY}】将交给被查验的玩家。`,
 	"": "",
 };
 

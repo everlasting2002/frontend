@@ -74,8 +74,8 @@ export interface RoomDef{
 	currentTeamVote: TeamVoteNumber;//当前组队投票轮数 -> 游戏结束重置
 	prevTeamVote: TeamVoteNumber;//上一次组队投票成功的轮数 -> 游戏结束重置
 	taskResult: number[];
-	isFinished: boolean;//是否已经结束 -> 游戏结束重置
 	playing: boolean;
+	isVoting: boolean;
 }
 
 export interface PublicPlayerDef {
@@ -86,6 +86,11 @@ export interface PublicPlayerDef {
 	questVoted: boolean[]; // 下标是轮数, value 是投了好票还是坏票
 	avatar: Avatar;// 头像
 	leave: boolean;
+	leader: boolean;
+	hint: "GOOD"|"BAD"|"MERLIN_OR_MORGANA"|"ASSASSIN"|"MORDRED"|"MORGANA"|"MINIONS"|"";
+	inTeam: boolean;
+	voted: boolean;
+	vote: number;
 }
 
 export interface PlayerDef extends PublicPlayerDef {

@@ -16,7 +16,7 @@
     </div>
 
     <img :src="pmUrl" id="pmgif" alt="logo" class="logo" v-show="pm_show"/>
-    <div class="title" v-show="!pm_show">虚空劫灰往世书</div>
+    <div class="title" v-show="!pm_show">须弥书</div>
     <Btn v-show="(loaded===true)" class="loading_enter" @click="skip" type="Enter" content="点击进入" />
     <div v-show="(loaded===false)" class="loading_percent">{{percent}}%</div>
   </div>

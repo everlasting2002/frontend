@@ -1,4 +1,4 @@
-import { LeaveRoomResponse } from './../../shared/WSMsg';
+import { resultResponse } from './../../shared/WSMsg';
 import { socket } from './../socket/index';
 
 import router from "../router";
@@ -11,8 +11,8 @@ export async function leave() {
 	});
 }
 
-export function leaveRoom(res : LeaveRoomResponse){
-	if(res.result=="fail"){
+export function leaveRoom(res : resultResponse){
+	if(res.result==="fail"){
 		return showDialog(res.reason);
 	}
 	Room.value.roomNumber="";

@@ -7,7 +7,7 @@ import { joinRoom } from './joinRoom';
 import { leaveRoom } from './leaveRoom';
 import { createRoom } from './createRoom';
 import { startGame } from './startGame';
-import { beginGame, endGame, refreshPlayers } from './play';
+import { beginGame, endGame, playerConfirmTeam, playerSelectTeam, playerVoteTeam, refreshPlayers, roleHint, selectTeam, setLeader, voteTeamProgress, voteTeamResult } from './play';
 import { recvMessage, sendMessagerecv } from './chat';
 import { gsap } from "gsap";
 
@@ -62,6 +62,15 @@ export async function WSConnect() {
 		else if(recv.type==="endGame")endGame(recv);
 		else if(recv.type==="playerTextMessage")sendMessagerecv(recv);
 		else if(recv.type==="textMessage")recvMessage(recv);
+		else if(recv.type==="setLeader")setLeader(recv);
+		else if(recv.type==="selectTeam")selectTeam(recv);
+		else if(recv.type==="confirmTeam")Room.value.isVoting=true;
+		else if(recv.type==="roleHint")roleHint(recv);
+		else if(recv.type==="playerVoteTeam")playerVoteTeam(recv);
+		else if(recv.type==="playerConfirmTeam")playerConfirmTeam(recv);
+		else if(recv.type==="playerSelectTeam")playerSelectTeam(recv);
+		else if(recv.type==="voteTeamProgress")voteTeamProgress(recv);
+		else if(recv.type==="voteTeam")voteTeamResult(recv);
 		else console.log(recv);
 	};
 }
@@ -87,6 +96,11 @@ function getRoomStatus(data: any) {
 			questVoted: [],
 			avatar: data[i].avatar,
 			leave: false,
+			leader: false,
+			hint: "",
+			inTeam: false,
+			vote: -1,
+			voted: false,
 		}
 		if (data[i].isOwner == true) {
 			Room.value.ownerID = data[i].ID;
