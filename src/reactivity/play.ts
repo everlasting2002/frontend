@@ -123,8 +123,11 @@ export function voteTeamResult(res : voteTeamReceive){
 	}
 	if(res.voteResult===true){
 		//执行任务
+		showDialog("执行任务...");
+		for(let i in players.value)players.value[i].inTeam=false;
 	}
 	else{
 		showDialog(`队伍方案未通过<br/>${5-Room.value.currentTeamVote+Room.value.prevTeamVote}轮否决后教令院将造神失败。`);
+		for(let i in players.value)players.value[i].inTeam=false;
 	}
 }

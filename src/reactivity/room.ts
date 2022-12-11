@@ -49,7 +49,7 @@ export async function WSConnect() {
 	socket.connect();
 	socket.ws.onmessage = (msg: { data: any }) => {
 		const recv = JSON.parse(msg.data);
-		console.log(recv);
+		if(import.meta.env.DEV)console.log(recv);
 		if (recv.type === "roomStatus") {
 			if (!Room.value.playing) getRoomStatus(recv.playerList);
 			else refreshPlayers(recv.playerList);
@@ -71,7 +71,7 @@ export async function WSConnect() {
 		else if(recv.type==="playerSelectTeam")playerSelectTeam(recv);
 		else if(recv.type==="voteTeamProgress")voteTeamProgress(recv);
 		else if(recv.type==="voteTeam")voteTeamResult(recv);
-		else console.log(recv);
+		else console.error(recv);
 	};
 }
 
