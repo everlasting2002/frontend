@@ -18,14 +18,7 @@
 					{{item.voted?"已投票":"未投票"}}
 				</div>
 				<div v-if="item.inTeam" class="player-inTeam">已选中</div>
-				<div v-if="item.hint" class="player-hint">{{
-					() => {
-						if(item.hint==="GOOD")return GOOD;
-						else if(item.hint==="BAD")return BAD;
-						else if(item.hint==="MERLIN_OR_MORGANA")return "具有神性之人";
-						else return ChineseNames[item.hint];
-					}
-				}}</div>
+				<div v-if="item.hint" class="player-hint">{{showHint(item)}}</div>
 			</div>
 			<div v-else>
 				<img src="/assets/img/play/avatar.svg" class="avatar"/>
@@ -42,6 +35,13 @@ import { players, Room, self } from "../reactivity/game";
 import { socket } from "../socket";
 import Avatar from "./Avatar.vue";
 import {GOOD, BAD, ChineseNames} from "../../shared/GameDefs";
+
+function showHint(item : PublicPlayerDef){
+	if(item.hint==="GOOD")return GOOD;
+	else if(item.hint==="BAD")return BAD;
+	else if(item.hint==="MERLIN_OR_MORGANA")return "具有神性之人";
+	else return ChineseNames[item.hint];
+}
 
 function select(id : number){
 	/* for(let i in players.value){
