@@ -14,7 +14,7 @@
 				</div>
 			</div>
 		</div>
-		<div v-if="(Room.isVoting)" class="playroom-vote">
+		<div v-if="(Room.isVoting && !self.voted)" class="playroom-vote">
 			<GenshinBtnVue class="playroom-vote-button" @click="voteTeam(true)" content="投票同意" theme="light" type="o"></GenshinBtnVue>
 			<GenshinBtnVue class="playroom-vote-button" @click="voteTeam(false)" content="投票反对" theme="light" type="x"></GenshinBtnVue>
 		</div>
