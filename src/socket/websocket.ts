@@ -1,3 +1,4 @@
+import { showDialog } from '../reactivity/dialog';
 import { WS_PATH } from './../../shared/constants';
 
 class SocketService {
@@ -59,6 +60,7 @@ class SocketService {
       if (this.connectRetryCount >= 10) {
         this.ws.close();
         console.log('重新连接服务器失败');
+        showDialog("服务器出现错误<br/>请联系1160386205@qq.com<br/>谢谢");
       } else {
         this.connected = false;
         this.connectRetryCount++;

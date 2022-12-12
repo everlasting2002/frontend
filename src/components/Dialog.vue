@@ -49,9 +49,7 @@
   .dialog-content {
     min-height: 8rem;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    justify-content: space-around;
     align-items: center;
     word-break: break-word;
     background-color: #3b4354;
@@ -67,10 +65,8 @@
     margin-left: calc(-40/200*var(--height)*2048/1080);
     left: 50vw;
     .content{
-      position: absolute;
       font-size: calc(45/1000*var(--height));
       color: #B6AB97;
-      top: calc(20/100*var(--height));
       text-align: center;
       z-index: 9999;
     }

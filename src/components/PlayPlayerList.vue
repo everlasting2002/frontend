@@ -7,10 +7,12 @@
 		>
 			<div v-if="item.avatar">
 				<Avatar v-if="item.index===self.index" class="myavatar" :character="item.avatar?item.avatar:'empty'">
-					<div v-if="self.leader" @click="select(item.index)" class="select-btn"></div>
+					<div v-if="canSelect" @click="select(item.index)" class="select-btn"></div>
+					<div v-if="canChoose" @click="fairyInspect(item.index)" class="select-btn"></div>
 				</Avatar>
 				<Avatar v-else class="avatar" :character="item.avatar">
-					<div v-if="self.leader" @click="select(item.index)" class="select-btn"></div>
+					<div v-if="canSelect" @click="select(item.index)" class="select-btn"></div>
+					<div v-if="canChoose" @click="fairyInspect(item.index)" class="select-btn"></div>
 				</Avatar>
 				<div class="name">{{item.name}}</div>
 				<div v-if="item.leader" class="leader-icon">队长</div>
@@ -18,14 +20,8 @@
 					{{item.voted?"已投票":"未投票"}}
 				</div>
 				<div v-if="item.inTeam" class="player-inTeam">已选中</div>
-				<div v-if="item.hint" class="player-hint">{{
-					() => {
-						if(item.hint==="GOOD")return GOOD;
-						else if(item.hint==="BAD")return BAD;
-						else if(item.hint==="MERLIN_OR_MORGANA")return "具有神性之人";
-						else return ChineseNames[item.hint];
-					}
-				}}</div>
+				<div v-if="item.hint" class="player-hint">{{showHint(item)}}</div>
+				<div v-if="item.isFairy" class="fairy-icon">虚空</div>
 			</div>
 			<div v-else>
 				<img src="/assets/img/play/avatar.svg" class="avatar"/>
@@ -42,6 +38,32 @@ import { players, Room, self } from "../reactivity/game";
 import { socket } from "../socket";
 import Avatar from "./Avatar.vue";
 import {GOOD, BAD, ChineseNames} from "../../shared/GameDefs";
+import { fairyChoosing } from "../reactivity/play";
+
+let successNumber = computed(()=>{
+	let x=0;
+	for(let item of Room.value.taskResult)x+=(item===1)?1:0;
+	return x;
+})
+
+let canSelect = computed(()=>{return self.value.leader && !fairyChoosing.value && successNumber.value<3});
+let canChoose = computed(()=>{return self.value.isFairy && fairyChoosing.value && successNumber.value<3});
+console.log(canSelect,self.value.leader,fairyChoosing.value,successNumber.value);
+console.log(canChoose,self.value.isFairy,fairyChoosing.value,successNumber.value);
+
+function showHint(item : PublicPlayerDef){
+	if(item.hint==="GOOD")return GOOD;
+	else if(item.hint==="BAD")return BAD;
+	else if(item.hint==="MERLIN_OR_MORGANA")return "具有神性之人";
+	else return ChineseNames[item.hint];
+}
+
+function fairyInspect(id : number){
+	socket.send({
+		type: "playerFairyInspect",
+		ID: id
+	})
+}
 
 function select(id : number){
 	/* for(let i in players.value){
@@ -84,7 +106,7 @@ let List = computed(()=>{
 	})
 	return copyedList;
 })
-console.log(List);
+//console.log(List);
 </script>
 
 <style lang="scss" scoped>
@@ -122,6 +144,12 @@ console.log(List);
 				left: 0px;
 				top: 0px;
 				color: paleturquoise;
+			}
+			.fairy-icon{
+				position: absolute;
+				right: 0px;
+				top: 30%;
+				color: green;
 			}
 			.avatar ,.myavatar{
 				position: relative;

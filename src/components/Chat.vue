@@ -144,6 +144,7 @@
 			padding-left: 5%;
 			padding-right: 5%;
 			transition: 0.2s;
+			font-size: calc(2/100*var(--height));
 			&:focus{
 				opacity: 1;
 			}

@@ -61,3 +61,17 @@ export type voteTeamReceive = {
 		vote: boolean,
 	}],
 }
+
+export type missionResultProgressReceive = {
+	decided: index[],
+}
+
+export type missionResultReceive = {
+	missionSuccess: boolean,
+	perform: number,
+	screw: number
+}
+
+export type fairyInspectReceive = {
+	ID: index,
+}

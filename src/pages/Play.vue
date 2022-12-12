@@ -14,11 +14,11 @@
 				</div>
 			</div>
 		</div>
-		<div v-if="(Room.isVoting)" class="playroom-vote">
+		<div v-if="(Room.isVoting && !self.voted)" class="playroom-vote">
 			<GenshinBtnVue class="playroom-vote-button" @click="voteTeam(true)" content="投票同意" theme="light" type="o"></GenshinBtnVue>
 			<GenshinBtnVue class="playroom-vote-button" @click="voteTeam(false)" content="投票反对" theme="light" type="x"></GenshinBtnVue>
 		</div>
-		<GenshinBtnVue v-if="self.leader" class="playroom-confirm-team" @click="confirmTeam()" content="确认组队方案" theme="light" type="o"></GenshinBtnVue>
+		<GenshinBtnVue v-if="(self.leader && !Room.isVoting && successNumber<3 && !fairyChoosing)" class="playroom-confirm-team" @click="confirmTeam()" content="确认组队方案" theme="light" type="o"></GenshinBtnVue>
 		<div class="test-buttons" v-if="isDev">
 			<p>本地调试用（不用注释）</p>
 			<GenshinBtnVue class="test-button" content="设为队长" @click="self.leader=true;" theme="dark" type="o"></GenshinBtnVue>
@@ -26,7 +26,10 @@
 			<GenshinBtnVue class="test-button" content="开始队伍投票" @click="Room.isVoting=true;" theme="dark" type="o"></GenshinBtnVue>
 			<GenshinBtnVue class="test-button" content="结束队伍投票" @click="Room.isVoting=false;" theme="dark" type="x"></GenshinBtnVue>
 		</div>
-		<ChatVue class="chat"></ChatVue>
+		<div v-if="successNumber===3" class="waitingText">{{"等待旅行者进行刺杀"}}</div>
+		<div v-else-if="fairyChoosing && !self.isFairy" class="waitingText">{{"等待虚空持有者进行操作"}}</div>
+		<div v-else-if="fairyChoosing && self.isFairy" class="waitingText">{{"请选择想要读取阵营的目标"}}</div>
+		<Chat class="chat"></Chat>
 		<Assassinate :playerList="players" ref="refAssassinate"></Assassinate>
 		<img @click="refAssassinate.showAssassinate()" class="playroom-skill" v-if="self.character==='ASSASSIN'" src="/assets/img/play/assassinate.png" />
 	</div>
@@ -38,11 +41,11 @@ import { CharacterIntro, ChineseNames } from "../../shared/GameDefs";
 import PlayPlayerList from "../components/PlayPlayerList.vue";
 import TasksVue from "../components/Tasks.vue";
 import Assassinate from "../components/Assassinate.vue";
-import { ref } from "vue";
-import ChatVue from "../components/Chat.vue";
+import { computed, ref } from "vue";
+import Chat from "../components/Chat.vue";
 import GenshinBtnVue from "../components/GenshinBtn.vue";
 import { socket } from "../socket";
-import Btn from "../components/Btn.vue";
+import { fairyChoosing } from "../reactivity/play"
 
 const refAssassinate = ref<any>(null);
 let isDev = import.meta.env.DEV ? true : false;
@@ -59,6 +62,12 @@ function confirmTeam(){
 		type: "playerConfirmTeam",
 	});
 }
+
+let successNumber = computed(()=>{
+	let x=0;
+	for(let item of Room.value.taskResult)x+=(item===1)?1:0;
+	return x;
+})
 </script>
 
 <style lang="scss" scoped>
@@ -86,7 +95,16 @@ function confirmTeam(){
 				width: 40%;
 				height: 100%;
 				display: block;
+				font-size: calc(2.5/100*var(--height));
 			}
+		}
+		.waitingText{
+			font-size: calc(7/100*var(--height));
+			left: calc(20/100*var(--width));
+			bottom: calc(15/100*var(--height));
+			position: absolute;
+			z-index: 2;
+			color: bisque;
 		}
 		.test-buttons{
 			.test-button{
