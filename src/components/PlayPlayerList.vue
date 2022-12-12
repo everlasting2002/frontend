@@ -7,10 +7,10 @@
 		>
 			<div v-if="item.avatar">
 				<Avatar v-if="item.index===self.index" class="myavatar" :character="item.avatar?item.avatar:'empty'">
-					<div v-if="self.leader" @click="select(item.index)" class="select-btn"></div>
+					<div v-if="(self.leader && successNumber<3)" @click="select(item.index)" class="select-btn"></div>
 				</Avatar>
 				<Avatar v-else class="avatar" :character="item.avatar">
-					<div v-if="self.leader" @click="select(item.index)" class="select-btn"></div>
+					<div v-if="(self.leader && successNumber<3)" @click="select(item.index)" class="select-btn"></div>
 				</Avatar>
 				<div class="name">{{item.name}}</div>
 				<div v-if="item.leader" class="leader-icon">队长</div>
@@ -64,6 +64,12 @@ function select(id : number){
 		team: team,
 	});
 }
+
+let successNumber = computed(()=>{
+	let x=0;
+	for(let item of Room.value.taskResult)x+=(item===1)?1:0;
+	return x;
+})
 
 let List = computed(()=>{
 	let copyedList : PublicPlayerDef[] = [];

@@ -71,18 +71,22 @@
 		z-index: 100;
 		.assassinate-player-list{
 			position: absolute;
-      margin: 0;
-      top: calc(10/100*var(--height));
-      left: calc(10/100*var(--width));
-      right: 0;
-      width: calc(55/100*var(--width));
-      height: calc(50/100*var(--height));
-      text-align: center;
+			margin: 0;
+			top: calc(6/100*var(--height));
+			left: calc(10/100*var(--width));
+			right: 0;
+			width: calc(55/100*var(--width));
+			height: calc(50/100*var(--height));
+			text-align: center;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			align-content: space-around;
 			.player{
 				position: relative;
 				margin: 0 calc(1/100*var(--width)) calc(3/100*var(--height)) calc(1/100*var(--width));
 				width: calc(8/100*var(--width));
-				display: inline-block;
+				display: flex;
 			}
 			.avatar ,.myavatar,.noavatar{
 				z-index: 101;

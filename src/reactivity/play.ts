@@ -29,17 +29,19 @@ export function beginGame(res : BeginGameResponse){
 	Room.value.currentTeamVote=0;
 	Room.value.prevTeamVote=0;
 	self.value.character=res.role;
+	Room.value.taskResult=[];
 	chatInit();
 	router.push("play");
 }
 
 export function endGame(res : EndGameResponse){
 	Room.value.playing=false;
+	Room.value.taskResult=[];
 	self.value.isFairy=false;
 	self.value.character="";
 	router.push("waitRoom");
 	//console.log(res);
-	showDialog((res.win?"迎接新神的诞生吧!":"「须弥的子民啊，再见了。」<br/>「愿你们今晚得享美梦。」")+res.reason);
+	showDialog((res.win?"迎接新神的诞生吧!<br/>":"「须弥的子民啊，再见了。」<br/>「愿你们今晚得享美梦。」<br/>")+res.reason);
 }
 
 export function refreshPlayers(data : any){

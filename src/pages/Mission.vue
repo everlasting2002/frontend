@@ -83,6 +83,7 @@ function voteMission(res : boolean){
 			width: 40%;
 			height: 100%;
 			position: relative;
+			font-size: calc(5/100*var(--height));
 		}
 	}
 	.mission_bg {
