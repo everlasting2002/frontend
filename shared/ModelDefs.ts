@@ -39,7 +39,8 @@ export type Avatar =
 	| "Layla"
 	| "Nahida"
 	| "Wanderer"
-	| "Yaoyao";
+	| "Yaoyao"
+	| "";
 
 export const avatarNames = [
 	"Alhatham",
