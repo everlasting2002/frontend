@@ -7,7 +7,7 @@ import { joinRoom } from './joinRoom';
 import { leaveRoom } from './leaveRoom';
 import { createRoom } from './createRoom';
 import { startGame } from './startGame';
-import { beginGame, endGame, missionResult, missionResultProgress, playerConductMission, playerConfirmTeam, playerSelectTeam, playerVoteTeam, refreshPlayers, roleHint, selectTeam, setLeader, voteTeamProgress, voteTeamResult } from './play';
+import { beginGame, endGame, getFairyInspectReceive, missionResult, missionResultProgress, playerConductMission, playerConfirmTeam, playerFairyInspectResponse, playerSelectTeam, playerVoteTeam, refreshPlayers, roleHint, selectTeam, setLeader, voteTeamProgress, voteTeamResult } from './play';
 import { recvMessage, sendMessagerecv } from './chat';
 import { gsap } from "gsap";
 
@@ -74,6 +74,8 @@ export async function WSConnect() {
 		else if(recv.type==="playerConductMission")playerConductMission(recv);
 		else if(recv.type==="missionResultProgress")missionResultProgress(recv);
 		else if(recv.type==="missionResult")missionResult(recv);
+		else if(recv.type==="playerFairyInspect")playerFairyInspectResponse(recv);
+		else if(recv.type==="fairyInspect")getFairyInspectReceive(recv);
 		else console.error(recv);
 	};
 }

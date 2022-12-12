@@ -1,3 +1,4 @@
+import { ref } from 'vue';
 import { players, Room, self } from './game';
 import {
 	BeginGameResponse,
@@ -10,10 +11,13 @@ import {
 	resultResponse,
 	missionResultProgressReceive,
 	missionResultReceive,
+	fairyInspectReceive,
 } from './../../shared/WSMsg';
 import router from '../router';
 import { showDialog } from './dialog';
 import { chatInit } from './chat';
+
+export const fairyChoosing = ref(false);
 
 export function beginGame(res : BeginGameResponse){
 	if(res.fairyID===self.value.index){
@@ -22,6 +26,7 @@ export function beginGame(res : BeginGameResponse){
 	for(let i in players.value){
 		if(players.value[i].index===res.fairyID){
 			players.value[i].isFairy=true;
+			break;
 		}
 	}
 	Room.value.playing=true;
@@ -30,6 +35,7 @@ export function beginGame(res : BeginGameResponse){
 	Room.value.prevTeamVote=0;
 	self.value.character=res.role;
 	Room.value.taskResult=[];
+	fairyChoosing.value=false;
 	chatInit();
 	router.push("play");
 }
@@ -119,6 +125,28 @@ export function playerConductMission(res : resultResponse){
 	}
 }
 
+export function playerFairyInspectResponse(res : resultResponse){
+	if(res.result==="fail"){
+		showDialog(res.reason);
+	}
+}
+
+export function getFairyInspectReceive(res : fairyInspectReceive){
+	fairyChoosing.value=false;
+	for(let i in players.value){
+		players.value[i].isFairy=false;
+	}
+	if(res.ID===self.value.index){
+		self.value.isFairy=true;
+	}
+	for(let i in players.value){
+		if(players.value[i].index===res.ID){
+			players.value[i].isFairy=true;
+			break;
+		}
+	}
+}
+
 export function missionResultProgress(res : missionResultProgressReceive){
 	for(let i in players.value){
 		if(res.decided.includes(players.value[i].index))players.value[i].voted=true;
@@ -142,6 +170,7 @@ export function missionResult(res : missionResultReceive){
 	}
 	else showDialog(`有${res.screw}人在阻止造神`);
 	Room.value.currentRound++;
+	if(Room.value.currentRound>=2 && Room.value.currentRound<=4 && players.value.length>=8)fairyChoosing.value=true;
 	router.push("play");
 }
 

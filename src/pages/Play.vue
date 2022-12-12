@@ -18,7 +18,7 @@
 			<GenshinBtnVue class="playroom-vote-button" @click="voteTeam(true)" content="投票同意" theme="light" type="o"></GenshinBtnVue>
 			<GenshinBtnVue class="playroom-vote-button" @click="voteTeam(false)" content="投票反对" theme="light" type="x"></GenshinBtnVue>
 		</div>
-		<GenshinBtnVue v-if="(self.leader && !Room.isVoting && successNumber<3)" class="playroom-confirm-team" @click="confirmTeam()" content="确认组队方案" theme="light" type="o"></GenshinBtnVue>
+		<GenshinBtnVue v-if="(self.leader && !Room.isVoting && successNumber<3 && !fairyChoosing)" class="playroom-confirm-team" @click="confirmTeam()" content="确认组队方案" theme="light" type="o"></GenshinBtnVue>
 		<div class="test-buttons" v-if="isDev">
 			<p>本地调试用（不用注释）</p>
 			<GenshinBtnVue class="test-button" content="设为队长" @click="self.leader=true;" theme="dark" type="o"></GenshinBtnVue>
@@ -26,7 +26,9 @@
 			<GenshinBtnVue class="test-button" content="开始队伍投票" @click="Room.isVoting=true;" theme="dark" type="o"></GenshinBtnVue>
 			<GenshinBtnVue class="test-button" content="结束队伍投票" @click="Room.isVoting=false;" theme="dark" type="x"></GenshinBtnVue>
 		</div>
-		<div v-if="successNumber===3" class="waitAssassinate">{{"等待旅行者进行刺杀"}}</div>
+		<div v-if="successNumber===3" class="waitingText">{{"等待旅行者进行刺杀"}}</div>
+		<div v-else-if="fairyChoosing && !self.isFairy" class="waitingText">{{"等待虚空持有者进行操作"}}</div>
+		<div v-else-if="fairyChoosing && self.isFairy" class="waitingText">{{"请选择想要读取阵营的目标"}}</div>
 		<Chat class="chat"></Chat>
 		<Assassinate :playerList="players" ref="refAssassinate"></Assassinate>
 		<img @click="refAssassinate.showAssassinate()" class="playroom-skill" v-if="self.character==='ASSASSIN'" src="/assets/img/play/assassinate.png" />
@@ -43,6 +45,7 @@ import { computed, ref } from "vue";
 import Chat from "../components/Chat.vue";
 import GenshinBtnVue from "../components/GenshinBtn.vue";
 import { socket } from "../socket";
+import { fairyChoosing } from "../reactivity/play"
 
 const refAssassinate = ref<any>(null);
 let isDev = import.meta.env.DEV ? true : false;
@@ -92,10 +95,11 @@ let successNumber = computed(()=>{
 				width: 40%;
 				height: 100%;
 				display: block;
+				font-size: calc(2.5/100*var(--height));
 			}
 		}
-		.waitAssassinate{
-			font-size: calc(10/100*var(--height));
+		.waitingText{
+			font-size: calc(7/100*var(--height));
 			left: calc(20/100*var(--width));
 			bottom: calc(15/100*var(--height));
 			position: absolute;
