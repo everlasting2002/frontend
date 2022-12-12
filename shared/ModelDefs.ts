@@ -6,6 +6,7 @@ export type round = number;
 export type TeamVoteNumber = number;
 export type Avatar =
 	| "PlayerGirl"
+	| "PlayerBoy"
 	| "Ayaka"
 	| "Albedo"
 	| "Klee"
@@ -33,10 +34,22 @@ export type Avatar =
 	| "Yae"
 	| "Yelan"
 	| "Yoimiya"
-	| "";
+	| "Alhatham"
+	| "Faruzan"
+	| "Layla"
+	| "Nahida"
+	| "Wanderer"
+	| "Yaoyao";
 
 export const avatarNames = [
+	"Alhatham",
+	"Faruzan",
+	"Layla",
+	"Nahida",
+	"Wanderer",
+	"Yaoyao",
 	"PlayerGirl",
+	"PlayerBoy",
 	"Ayaka",
 	"Albedo",
 	"Kazuha",
