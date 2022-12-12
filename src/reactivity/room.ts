@@ -7,7 +7,7 @@ import { joinRoom } from './joinRoom';
 import { leaveRoom } from './leaveRoom';
 import { createRoom } from './createRoom';
 import { startGame } from './startGame';
-import { beginGame, endGame, playerConfirmTeam, playerSelectTeam, playerVoteTeam, refreshPlayers, roleHint, selectTeam, setLeader, voteTeamProgress, voteTeamResult } from './play';
+import { beginGame, endGame, missionResult, missionResultProgress, playerConductMission, playerConfirmTeam, playerSelectTeam, playerVoteTeam, refreshPlayers, roleHint, selectTeam, setLeader, voteTeamProgress, voteTeamResult } from './play';
 import { recvMessage, sendMessagerecv } from './chat';
 import { gsap } from "gsap";
 
@@ -71,6 +71,9 @@ export async function WSConnect() {
 		else if(recv.type==="playerSelectTeam")playerSelectTeam(recv);
 		else if(recv.type==="voteTeamProgress")voteTeamProgress(recv);
 		else if(recv.type==="voteTeam")voteTeamResult(recv);
+		else if(recv.type==="playerConductMission")playerConductMission(recv);
+		else if(recv.type==="missionResultProgress")missionResultProgress(recv);
+		else if(recv.type==="missionResult")missionResult(recv);
 		else console.error(recv);
 	};
 }

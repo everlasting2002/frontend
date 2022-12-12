@@ -26,7 +26,8 @@
 			<GenshinBtnVue class="test-button" content="开始队伍投票" @click="Room.isVoting=true;" theme="dark" type="o"></GenshinBtnVue>
 			<GenshinBtnVue class="test-button" content="结束队伍投票" @click="Room.isVoting=false;" theme="dark" type="x"></GenshinBtnVue>
 		</div>
-		<ChatVue class="chat"></ChatVue>
+		<div v-if="successNumber===3" class="waitAssassinate">{{"等待旅行者进行刺杀"}}</div>
+		<Chat class="chat"></Chat>
 		<Assassinate :playerList="players" ref="refAssassinate"></Assassinate>
 		<img @click="refAssassinate.showAssassinate()" class="playroom-skill" v-if="self.character==='ASSASSIN'" src="/assets/img/play/assassinate.png" />
 	</div>
@@ -38,8 +39,8 @@ import { CharacterIntro, ChineseNames } from "../../shared/GameDefs";
 import PlayPlayerList from "../components/PlayPlayerList.vue";
 import TasksVue from "../components/Tasks.vue";
 import Assassinate from "../components/Assassinate.vue";
-import { ref } from "vue";
-import ChatVue from "../components/Chat.vue";
+import { computed, ref } from "vue";
+import Chat from "../components/Chat.vue";
 import GenshinBtnVue from "../components/GenshinBtn.vue";
 import { socket } from "../socket";
 
@@ -58,6 +59,12 @@ function confirmTeam(){
 		type: "playerConfirmTeam",
 	});
 }
+
+let successNumber = computed(()=>{
+	let x=0;
+	for(let item of Room.value.taskResult)x+=(item===1)?1:0;
+	return x;
+})
 </script>
 
 <style lang="scss" scoped>
@@ -86,6 +93,13 @@ function confirmTeam(){
 				height: 100%;
 				display: block;
 			}
+		}
+		.waitAssassinate{
+			font-size: calc(20/100*var(--height));
+			left: calc(20/100*var(--width));
+			bottom: calc(20/100*var(--height));
+			position: absolute;
+			z-index: 2;
 		}
 		.test-buttons{
 			.test-button{

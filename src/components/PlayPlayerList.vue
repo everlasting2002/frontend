@@ -84,7 +84,7 @@ let List = computed(()=>{
 	})
 	return copyedList;
 })
-console.log(List);
+//console.log(List);
 </script>
 
 <style lang="scss" scoped>

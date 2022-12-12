@@ -23,6 +23,10 @@ const router = createRouter({
       path: "/play",
       name: "play",
       component: () => import("../pages/Play.vue")
+    },{
+      path: "/mission",
+      name: "mission",
+      component: () => import("../pages/Mission.vue")
     }
   ]
 });

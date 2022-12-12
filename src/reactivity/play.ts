@@ -8,6 +8,8 @@ import {
 	voteTeamProgressReceive,
 	voteTeamReceive,
 	resultResponse,
+	missionResultProgressReceive,
+	missionResultReceive,
 } from './../../shared/WSMsg';
 import router from '../router';
 import { showDialog } from './dialog';
@@ -23,6 +25,9 @@ export function beginGame(res : BeginGameResponse){
 		}
 	}
 	Room.value.playing=true;
+	Room.value.currentRound=0;
+	Room.value.currentTeamVote=0;
+	Room.value.prevTeamVote=0;
 	self.value.character=res.role;
 	chatInit();
 	router.push("play");
@@ -34,7 +39,7 @@ export function endGame(res : EndGameResponse){
 	self.value.character="";
 	router.push("waitRoom");
 	//console.log(res);
-	showDialog((res.win?"迎接新神的诞生吧!<br/>":"小草神重新掌管了教令院。<br/>")+res.reason);
+	showDialog((res.win?"迎接新神的诞生吧!":"「须弥的子民啊，再见了。」<br/>「愿你们今晚得享美梦。」")+res.reason);
 }
 
 export function refreshPlayers(data : any){
@@ -106,11 +111,44 @@ export function playerSelectTeam(res : resultResponse){
 	}
 }
 
+export function playerConductMission(res : resultResponse){
+	if(res.result==="fail"){
+		showDialog(res.reason);
+	}
+}
+
+export function missionResultProgress(res : missionResultProgressReceive){
+	for(let i in players.value){
+		if(res.decided.includes(players.value[i].index))players.value[i].voted=true;
+		else players.value[i].voted=false;
+	}
+}
+
+export function missionResult(res : missionResultReceive){
+	Room.value.isVoting=false;
+	for(let i in players.value){
+		players.value[i].voted=false;
+		players.value[i].inTeam=false;
+	}
+	Room.value.taskResult.push(res.missionSuccess?1:2);
+	if(res.screw===0){
+		if(Room.value.currentRound===0)showDialog("花神诞祭…你们就好好庆祝神明的诞生吧。");
+		if(Room.value.currentRound===1)showDialog("已确保全部连接，构建最高稳定性架构。<br/>「计划」进入最关键阶段，从「——」中开始进行力量导出。");
+		if(Room.value.currentRound===2)showDialog("「无需恐惧，疼痛只是一瞬。」<br/>「你们的时代…就要结束了。」");
+		if(Room.value.currentRound===3)showDialog("「沙漠的子民们啊，无需再记恨什么。」<br/>「但唯独这份恩情，永远都不要遗忘。」");
+		if(Room.value.currentRound===4)showDialog("此刻，重现魔神战争的一角，来为我作为神明的诞生而「正名」吧。");
+	}
+	else showDialog(`有${res.screw}人在阻止造神`);
+	Room.value.currentRound++;
+	router.push("play");
+}
+
 /**
  * @todo 记分板
  */
 export function voteTeamResult(res : voteTeamReceive){
 	Room.value.isVoting=false;
+	Room.value.currentTeamVote++;
 	for(let i in players.value){
 		let item=res.voteList.find(function(e){return players.value[i].index===e.ID});
 		if(item){
@@ -122,9 +160,9 @@ export function voteTeamResult(res : voteTeamReceive){
 		players.value[i].voted=false;
 	}
 	if(res.voteResult===true){
-		//执行任务
-		showDialog("执行任务...");
-		for(let i in players.value)players.value[i].inTeam=false;
+		Room.value.prevTeamVote=Room.value.currentTeamVote;
+		router.push("mission");
+		Room.value.isVoting=true;
 	}
 	else{
 		showDialog(`队伍方案未通过<br/>${5-Room.value.currentTeamVote+Room.value.prevTeamVote}轮否决后教令院将造神失败。`);
