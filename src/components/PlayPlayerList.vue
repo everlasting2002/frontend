@@ -46,7 +46,7 @@ let successNumber = computed(()=>{
 	return x;
 })
 
-let canSelect = computed(()=>{return self.value.leader && !fairyChoosing.value && successNumber.value<3});
+let canSelect = computed(()=>{return self.value.leader && !Room.value.isVoting && !fairyChoosing.value && successNumber.value<3});
 let canChoose = computed(()=>{return self.value.isFairy && fairyChoosing.value && successNumber.value<3});
 //console.log(canSelect,self.value.leader,fairyChoosing.value,successNumber.value);
 //console.log(canChoose,self.value.isFairy,fairyChoosing.value,successNumber.value);
